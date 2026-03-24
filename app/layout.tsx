@@ -1,27 +1,28 @@
 import type { Metadata } from 'next'
-import { Outfit, Playfair_Display } from 'next/font/google'
+import { Inter, Libre_Baskerville } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-/* ─── Playfair Display — editorial serif for hero headline ─
-   High-contrast old-style serif. Dramatic at large sizes.
+/* ─── Libre Baskerville — refined editorial serif ──────────
+   Elegant, timeless serif with beautiful curves. Premium feel
+   at all sizes without looking heavy or dated.
    ─────────────────────────────────────────────────────────── */
-const playfair = Playfair_Display({
+const libreBaskerville = Libre_Baskerville({
   subsets: ['latin'],
-  variable: '--font-playfair',
+  variable: '--font-serif',
   display: 'swap',
-  weight: ['400', '500', '600', '700', '800', '900'],
+  weight: ['400', '700'],
   style: ['normal', 'italic'],
 })
 
-/* ─── Outfit — geometric sans for body & UI ────────────────
-   Clean, modern. Used for everything except the hero h1.
+/* ─── Inter — modern geometric sans ────────────────────────
+   Apple-grade typography. Clean, highly legible, with
+   excellent letter-spacing. Never looks cheap or chunky.
    ─────────────────────────────────────────────────────────── */
-const outfit = Outfit({
+const inter = Inter({
   subsets: ['latin'],
-  variable: '--font-outfit',
+  variable: '--font-sans',
   display: 'swap',
-  weight: ['300', '400', '500', '600', '700', '800'],
 })
 
 export const metadata: Metadata = {
@@ -35,8 +36,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es" className={`${playfair.variable} ${outfit.variable} bg-[#E5E4DF]`}>
-      <body className="font-sans antialiased bg-[#E5E4DF] text-slate-900">
+    <html lang="es" className={`${libreBaskerville.variable} ${inter.variable}`}>
+      <body className="font-sans antialiased bg-[#FAFAF9] text-stone-800 selection:bg-blue-100 selection:text-blue-900">
         {children}
         <Analytics />
       </body>
