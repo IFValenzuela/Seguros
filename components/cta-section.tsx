@@ -22,22 +22,30 @@ export function CTASection() {
       {/* CTA Section - With image */}
       <section className="relative overflow-hidden" ref={containerRef}>
         {/* Background image */}
-        <div className="absolute inset-0">
-          <img
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute inset-0"
+        >
+          <motion.img
+            initial={{ scale: 1.1 }}
+            animate={isInView ? { scale: 1 } : {}}
+            transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
             src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=2000&auto=format&fit=crop"
             alt=""
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-stone-950/85" />
-        </div>
+        </motion.div>
 
         <div className="relative max-w-7xl mx-auto px-6 md:px-8 py-32">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left - Content */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             >
               <span className="text-[11px] tracking-[0.2em] uppercase text-white/50 font-medium mb-6 block">
                 Comienza hoy
@@ -79,9 +87,9 @@ export function CTASection() {
 
             {/* Right - Stats */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className="grid grid-cols-2 gap-6"
             >
               {[
@@ -90,8 +98,15 @@ export function CTASection() {
                 { value: "98%", label: "Clientes satisfechos" },
                 { value: "24/7", label: "Soporte disponible" },
               ].map((stat, i) => (
-                <div
+                <motion.div
                   key={stat.label}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{
+                    duration: 0.6,
+                    delay: 0.6 + i * 0.1,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
                   className="p-6 border border-white/10 rounded-2xl bg-white/5 backdrop-blur-sm"
                 >
                   <div
@@ -103,7 +118,7 @@ export function CTASection() {
                   <div className="text-sm text-white/50">
                     {stat.label}
                   </div>
-                </div>
+                </motion.div>
               ))}
             </motion.div>
           </div>

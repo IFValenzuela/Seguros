@@ -32,31 +32,32 @@ export function Header() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-          isScrolled
-            ? 'bg-white/80 backdrop-blur-xl border-b border-stone-200/50 shadow-sm'
-            : 'bg-transparent'
-        }`}
+        className="fixed top-0 w-full z-50"
       >
-        <nav className="flex items-center justify-between max-w-7xl mx-auto px-6 md:px-8 py-5">
-          {/* Logo */}
-          <Link
-            href="/"
-            className={`text-xl tracking-[0.3em] uppercase transition-colors duration-300 ${
-              isScrolled ? 'text-stone-900' : 'text-white'
-            }`}
-            style={{ fontFamily: 'var(--font-serif)' }}
-          >
-            VA
-          </Link>
+        {/* Background with smooth transition */}
+        <div
+          className={`absolute inset-0 transition-all duration-700 ease-out ${
+            isScrolled
+              ? 'bg-white/80 backdrop-blur-xl shadow-sm opacity-100'
+              : 'bg-transparent opacity-0'
+          }`}
+        />
 
+        {/* Border with smooth transition */}
+        <div
+          className={`absolute bottom-0 left-0 right-0 h-px bg-stone-200/50 transition-opacity duration-700 ease-out ${
+            isScrolled ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
+
+        <nav className="relative flex items-center justify-center max-w-7xl mx-auto px-6 md:px-8 py-5">
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative px-4 py-2 text-[13px] font-medium tracking-wide transition-colors duration-300 rounded-full ${
+                className={`relative px-4 py-2 text-[13px] font-medium tracking-wide transition-all duration-700 ease-out rounded-full ${
                   isScrolled
                     ? 'text-stone-600 hover:text-stone-900 hover:bg-stone-100'
                     : 'text-white/70 hover:text-white hover:bg-white/10'
@@ -65,13 +66,9 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
-          </div>
-
-          {/* CTA Button */}
-          <div className="hidden lg:block">
             <Link
               href="/cotizar"
-              className={`inline-flex items-center px-6 py-2.5 rounded-full text-[13px] font-medium tracking-wide transition-all duration-300 ${
+              className={`inline-flex items-center px-6 py-2.5 rounded-full text-[13px] font-medium tracking-wide transition-all duration-700 ease-out ml-2 ${
                 isScrolled
                   ? 'bg-stone-900 text-white hover:bg-stone-800'
                   : 'bg-white text-stone-900 hover:bg-white/90'
@@ -84,7 +81,7 @@ export function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`lg:hidden p-2 rounded-lg transition-colors ${
+            className={`lg:hidden absolute right-6 md:right-8 p-2 rounded-lg transition-colors duration-700 ease-out ${
               isScrolled ? 'text-stone-900' : 'text-white'
             }`}
             aria-label="Toggle menu"

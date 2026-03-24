@@ -62,16 +62,25 @@ export function TestimonialsPreview() {
           {testimonios.map((t, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{
-                duration: 0.6,
-                delay: 0.1 + i * 0.1,
+                duration: 0.8,
+                delay: 0.15 + i * 0.15,
                 ease: [0.22, 1, 0.36, 1]
               }}
               className="group"
             >
-              <div className="bg-white h-full flex flex-col p-8 transition-all duration-300 hover:shadow-xl hover:shadow-stone-900/5">
+              <motion.div
+                initial={{ scale: 0.95 }}
+                animate={isInView ? { scale: 1 } : {}}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.15 + i * 0.15,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+                className="bg-white h-full flex flex-col p-8 transition-all duration-300 hover:shadow-xl hover:shadow-stone-900/5"
+              >
                 {/* Large initial */}
                 <div className="mb-8">
                   <span
@@ -95,7 +104,7 @@ export function TestimonialsPreview() {
                   <p className="text-sm font-medium text-stone-900">{t.name}</p>
                   <p className="text-xs text-stone-400">{t.role}</p>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
           ))}
         </div>

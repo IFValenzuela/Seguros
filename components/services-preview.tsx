@@ -72,16 +72,19 @@ export function ServicesPreview() {
 
         {/* Featured Service - Large */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           className="mb-6"
         >
           <Link href={services[0].href} className="group block">
             <div className="grid md:grid-cols-2 gap-6 bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-stone-900/5 transition-all duration-500">
               {/* Image */}
               <div className="aspect-[4/3] md:aspect-auto overflow-hidden">
-                <img
+                <motion.img
+                  initial={{ opacity: 0, scale: 1.1 }}
+                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                   src={services[0].image}
                   alt={services[0].title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -115,11 +118,11 @@ export function ServicesPreview() {
           {services.slice(1).map((service, i) => (
             <motion.div
               key={service.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{
-                duration: 0.6,
-                delay: 0.2 + i * 0.1,
+                duration: 0.8,
+                delay: 0.3 + i * 0.15,
                 ease: [0.22, 1, 0.36, 1]
               }}
             >
@@ -127,7 +130,14 @@ export function ServicesPreview() {
                 <div className="h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-stone-900/5 transition-all duration-500">
                   {/* Image */}
                   <div className="aspect-[4/3] overflow-hidden">
-                    <img
+                    <motion.img
+                      initial={{ opacity: 0, scale: 1.1 }}
+                      animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                      transition={{
+                        duration: 1.2,
+                        delay: 0.2 + i * 0.15,
+                        ease: [0.22, 1, 0.36, 1]
+                      }}
                       src={service.image}
                       alt={service.title}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
