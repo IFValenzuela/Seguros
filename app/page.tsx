@@ -4,23 +4,20 @@ import { TrustBar } from "@/components/trust-bar"
 import { ServicesPreview } from "@/components/services-preview"
 import { TestimonialsPreview } from "@/components/testimonials-preview"
 import { CTASection } from "@/components/cta-section"
-import { Footer } from "@/components/footer"
 
 export default function HomePage() {
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="w-full bg-[#F5F4EF] min-h-screen overflow-x-hidden">
+      {/* Header sits sticky inside the rounded app window */}
       <Header />
-      <main className="flex-1 pt-16 lg:pt-20">
-        {/* Hero + TrustBar wrapper - fills viewport above the fold */}
-        <div className="flex flex-col min-h-[calc(100vh-4rem)] lg:min-h-[calc(100vh-5rem)]">
-          <Hero />
-          <TrustBar />
-        </div>
+      <main>
+        {/* Hero: cinematic video header with full-bleed */}
+        <Hero />
         <ServicesPreview />
         <TestimonialsPreview />
+        {/* CTA Section now includes footer elements */}
         <CTASection />
       </main>
-      <Footer />
     </div>
   )
 }
