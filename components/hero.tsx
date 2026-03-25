@@ -52,7 +52,7 @@ export function Hero() {
           className="w-full h-full object-cover"
           style={{
             filter: "contrast(1.02) saturate(0.85) brightness(0.82)",
-            objectPosition: "50% 35%"
+            objectPosition: "70% 40%"
           }}
         />
       </motion.div>

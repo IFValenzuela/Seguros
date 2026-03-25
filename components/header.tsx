@@ -57,7 +57,8 @@ export function Header() {
             <img
               src={(isScrolled || isMobileMenuOpen) ? "/VABL.png" : "/VA WL.png"}
               alt="VA Advisors"
-              className="w-auto object-contain transition-opacity duration-500 h-[100px] lg:h-[150px]"
+              className="w-auto object-contain transition-opacity duration-500"
+              style={{ height: "150px" }}
             />
           </Link>
 
