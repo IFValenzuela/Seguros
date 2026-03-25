@@ -41,7 +41,7 @@ export function ServicesPreview() {
   const isInView = useInView(containerRef, { once: false, margin: "-100px" })
 
   return (
-    <section className="py-28 bg-stone-50" ref={containerRef}>
+    <section id="servicios" className="py-28 bg-stone-50" ref={containerRef}>
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         {/* Header */}
         <motion.div

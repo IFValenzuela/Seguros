@@ -10,7 +10,7 @@ const CHAMPAGNE = "#EBD9B4"
 const GOLD      = "#C9A86C"
 
 const navLinks = [
-  { label: "Servicios",      href: "/servicios" },
+  { label: "Servicios",      href: "/#servicios" },
   { label: "Vida",           href: "/servicios/vida" },
   { label: "Gastos Médicos", href: "/servicios/gastos-medicos" },
   { label: "Auto",           href: "/servicios/auto" },
