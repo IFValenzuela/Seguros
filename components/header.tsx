@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Phone } from "lucide-react"
 
 const TOBACCO   = "#160C04"
 const CHAMPAGNE = "#EBD9B4"
@@ -90,27 +90,24 @@ export function Header() {
             ))}
           </div>
 
-          {/* CTA Button */}
-          <Link
-            href="/cotizar"
-            className="hidden lg:inline-flex items-center px-6 py-2.5 rounded-full text-[13px] font-semibold tracking-wide transition-all duration-300"
+          {/* Contact Phone */}
+          <a
+            href="tel:+526861234567"
+            className="hidden lg:inline-flex items-center gap-2 text-[14px] font-medium transition-all duration-300"
             style={{
-              background: CHAMPAGNE,
-              color: TOBACCO,
-              border: `1.5px solid rgba(0,0,0,0.5)`,
-              boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
+              color: isScrolled ? TOBACCO : CHAMPAGNE,
+              textShadow: isScrolled ? "none" : "0 1px 2px rgba(0,0,0,0.3)",
             }}
             onMouseEnter={e => {
-              e.currentTarget.style.background = GOLD
-              e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.2)"
+              e.currentTarget.style.color = GOLD
             }}
             onMouseLeave={e => {
-              e.currentTarget.style.background = CHAMPAGNE
-              e.currentTarget.style.boxShadow = "0 2px 8px rgba(0,0,0,0.15)"
+              e.currentTarget.style.color = isScrolled ? TOBACCO : CHAMPAGNE
             }}
           >
-            Cotizar
-          </Link>
+            <Phone className="w-4 h-4" strokeWidth={2} />
+            (686) 123-4567
+          </a>
 
           {/* Mobile button */}
           <button

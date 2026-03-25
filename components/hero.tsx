@@ -217,15 +217,15 @@ export function Hero() {
                 color: TOBACCO,
                 border: `2px solid rgba(0,0,0,0.6)`,
                 borderRadius: "9999px",
-                background: CHAMPAGNE,
+                background: `#d8d7d5`,
                 boxShadow: "0 4px 15px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)",
               }}
               onMouseEnter={e => {
-                e.currentTarget.style.background = GOLD
+                e.currentTarget.style.background = CHAMPAGNE
                 e.currentTarget.style.boxShadow = "0 6px 20px rgba(0,0,0,0.4), 0 3px 6px rgba(0,0,0,0.25)"
               }}
               onMouseLeave={e => {
-                e.currentTarget.style.background = CHAMPAGNE
+                e.currentTarget.style.background = `#d8d7d5`
                 e.currentTarget.style.boxShadow = "0 4px 15px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)"
               }}
             >
