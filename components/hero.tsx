@@ -1,200 +1,253 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
-import { ArrowRight } from "lucide-react"
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
+import { useRef, useState, useEffect } from "react"
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 
-/* ─────────────────────────────────────────────────────────────
-   ROTATING PHRASES - Elegant transitions
-   ───────────────────────────────────────────────────────────── */
-const PHRASES = [
-  "la mejor protección.",
-  "tranquilidad absoluta.",
-  "atención experta.",
-  "el mejor respaldo.",
-]
+const TOBACCO   = "#160C04"
+const CHAMPAGNE = "#EBD9B4"
+const GOLD      = "#C9A86C"
 
-function TextRotator() {
-  const [index, setIndex] = useState(0)
+const WORDS = ["Familia", "Futuro", "Salud", "Hogar", "Legado"]
 
-  useEffect(() => {
-    const id = setInterval(() => setIndex((i) => (i + 1) % PHRASES.length), 4000)
-    return () => clearInterval(id)
-  }, [])
-
-  return (
-    <span className="relative inline-block overflow-hidden align-bottom" style={{ minHeight: "1.1em" }}>
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={index}
-          initial={{ y: "110%", opacity: 0 }}
-          animate={{ y: "0%", opacity: 1 }}
-          exit={{ y: "-110%", opacity: 0 }}
-          transition={{
-            duration: 0.7,
-            ease: [0.22, 1, 0.36, 1]
-          }}
-          className="block text-stone-400"
-        >
-          {PHRASES[index]}
-        </motion.span>
-      </AnimatePresence>
-    </span>
-  )
-}
-
-/* ─────────────────────────────────────────────────────────────
-   PREMIUM HERO - Editorial, Refined, Million-dollar feel
-   ───────────────────────────────────────────────────────────── */
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
+  const [wordIndex, setWordIndex] = useState(0)
+
+  useEffect(() => {
+    const id = setInterval(() => setWordIndex(i => (i + 1) % WORDS.length), 3400)
+    return () => clearInterval(id)
+  }, [])
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
   })
 
-  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"])
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.1])
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
-  const contentY = useTransform(scrollYProgress, [0, 0.5], [0, -50])
+  /* 3D parallax depth: photo slowest → headline → word fastest */
+  const photoY    = useTransform(scrollYProgress, [0, 1], ["0%",  "25%"])
+  const headlineY = useTransform(scrollYProgress, [0, 1], ["0%", "-18%"])
+  const wordY     = useTransform(scrollYProgress, [0, 1], ["0%", "-28%"])
+  const lowerY    = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"])
+  const fadeOut   = useTransform(scrollYProgress, [0, 0.5], [1, 0])
 
   return (
     <section
       ref={sectionRef}
-      className="relative w-full min-h-screen flex items-center overflow-hidden"
+      className="relative w-full h-screen overflow-hidden"
+      style={{ background: TOBACCO }}
     >
-      {/* Background Image with parallax */}
+
+      {/* ── LAYER 0 — Full-bleed photo, oversized for parallax travel ── */}
       <motion.div
-        style={{ y: imageY, scale: imageScale }}
-        className="absolute inset-0 -z-20"
+        style={{ y: photoY, height: "130%", top: "-15%" }}
+        className="absolute left-0 right-0"
+        initial={{ opacity: 0, scale: 1.06 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 2.6, ease: [0.22, 1, 0.36, 1] }}
       >
         <img
           src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2670&auto=format&fit=crop"
-          alt="Familia feliz"
-          className="w-full h-[120%] object-cover"
+          alt="Asesor con familia"
+          className="w-full h-full object-cover object-center"
+          /* Heavily underexposed — faces emerge through spotlight below */
+          style={{ filter: "contrast(1.08) saturate(0.78) brightness(0.48)" }}
         />
       </motion.div>
 
-      {/* Gradient overlay - balanced for readability + image visibility */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-stone-950/80 via-stone-950/50 to-transparent" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-stone-950/70 via-transparent to-stone-950/30" />
+      {/* ── LAYER 1 — Deep tobacco tint ── */}
+      <div
+        className="absolute inset-0"
+        style={{ background: "rgba(18,9,2,0.65)", zIndex: 1 }}
+      />
 
-      {/* Main content */}
+      {/* ── LAYER 2 — Warm face spotlight: lifts just the subjects ── */}
+      <div
+        className="absolute inset-0"
+        style={{
+          zIndex: 2,
+          background: `radial-gradient(
+            ellipse 40% 45% at 57% 43%,
+            rgba(201,168,108,0.12)  0%,
+            rgba(201,168,108,0.04) 20%,
+            transparent            32%,
+            rgba(10,5,1,0.32)     60%,
+            rgba(5,2,0,0.82)     100%
+          )`,
+        }}
+      />
+
+      {/* ── LAYER 3 — Top / bottom tobacco burn ── */}
+      <div
+        className="absolute inset-0"
+        style={{
+          zIndex: 2,
+          background: `linear-gradient(
+            to bottom,
+            rgba(14,7,1,0.75)   0%,
+            transparent         22%,
+            transparent         58%,
+            rgba(10,5,0,0.92)  100%
+          )`,
+        }}
+      />
+
+      {/* ── LAYER 4 — All content, fades out on scroll ── */}
       <motion.div
-        style={{ opacity: contentOpacity, y: contentY }}
-        className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-8 py-32"
+        style={{ opacity: fadeOut }}
+        className="absolute inset-0 flex flex-col items-center justify-center z-10 px-6"
       >
-        <div className="max-w-3xl">
-          {/* Eyebrow */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="mb-8"
-          >
-            <span className="inline-flex items-center gap-3 text-xs tracking-[0.2em] uppercase text-white/50 font-medium">
-              <span className="w-8 h-px bg-white/30" />
-              Mexicali, Baja California
-            </span>
-          </motion.div>
 
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-[1.1] tracking-tight mb-8"
-            style={{ fontFamily: 'var(--font-serif)' }}
-          >
-            Lo que más importa
-            <br />
-            merece <TextRotator />
-          </motion.h1>
-
-          {/* Subheadline */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="text-base md:text-lg text-white/80 leading-relaxed max-w-xl mb-12"
-          >
-            Seguros de vida, gastos médicos y servicios financieros con
-            asesoría personalizada. Más de 15 años protegiendo familias
-            en Mexicali.
-          </motion.p>
-
-          {/* CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-wrap items-center gap-4"
-          >
-            <motion.a
-              href="/cotizar"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="group inline-flex items-center gap-3 px-8 py-4 bg-white text-stone-900 rounded-full text-sm font-medium transition-all duration-300 hover:shadow-2xl hover:shadow-white/20"
-            >
-              Solicitar cotización
-              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={1.5} />
-            </motion.a>
-
-            <motion.a
-              href="/nosotros"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-white/15 text-white rounded-full text-sm font-medium border border-white/30 backdrop-blur-sm transition-all duration-300 hover:bg-white/25 hover:border-white/50"
-            >
-              Conocer más
-            </motion.a>
-          </motion.div>
-
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="flex items-center gap-12 mt-20 pt-8 border-t border-white/10"
-          >
-            {[
-              { value: "500+", label: "Familias protegidas" },
-              { value: "15+", label: "Años de experiencia" },
-              { value: "98%", label: "Satisfacción" },
-            ].map((stat, i) => (
-              <div key={stat.label}>
-                <div
-                  className="text-3xl md:text-4xl text-white tracking-tight mb-2"
-                  style={{ fontFamily: 'var(--font-serif)' }}
-                >
-                  {stat.value}
-                </div>
-                <div className="text-xs uppercase tracking-[0.15em] text-white/40 font-medium">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </motion.div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.5 }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-3"
-      >
-        <span className="text-[10px] uppercase tracking-[0.25em] text-white/30 font-medium">
-          Scroll
-        </span>
+        {/* Eyebrow */}
         <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="w-px h-12 bg-gradient-to-b from-white/40 to-transparent"
-        />
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.65 }}
+          className="flex items-center gap-4 mb-9"
+        >
+          <span className="w-6 h-px" style={{ background: `${GOLD}45` }} />
+          <span
+            className="text-[9px] uppercase tracking-[0.4em] font-medium"
+            style={{ color: `${GOLD}85` }}
+          >
+            VA Advisors · Mexicali, B.C.
+          </span>
+          <span className="w-6 h-px" style={{ background: `${GOLD}45` }} />
+        </motion.div>
+
+        {/* Headline — clip-reveal from below, then parallaxes up */}
+        <motion.div style={{ y: headlineY }} className="mb-2">
+          <div className="overflow-hidden px-1">
+            <motion.h1
+              initial={{ y: "106%" }}
+              animate={{ y: "0%" }}
+              transition={{ duration: 1.1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="text-center uppercase"
+              style={{
+                fontFamily: "var(--font-serif)",
+                fontWeight: 700,
+                fontSize: "clamp(1.75rem, 4.4vw, 4.6rem)",
+                lineHeight: 1.06,
+                letterSpacing: "0.14em",
+                color: CHAMPAGNE,
+              }}
+            >
+              Lo que más importa es tu
+            </motion.h1>
+          </div>
+        </motion.div>
+
+        {/* Dynamic italic word — separate parallax layer, deepest depth */}
+        <motion.div
+          style={{ y: wordY }}
+          className="flex items-center justify-center mb-10"
+        >
+          <AnimatePresence mode="wait">
+            <motion.span
+              key={WORDS[wordIndex]}
+              initial={{ opacity: 0, filter: "blur(10px)", y: 8 }}
+              animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+              exit={{ opacity: 0, filter: "blur(10px)", y: -8 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="italic text-center block"
+              style={{
+                fontFamily: "var(--font-serif)",
+                fontWeight: 400,
+                fontSize: "clamp(3rem, 8.5vw, 8.8rem)",
+                lineHeight: 1.0,
+                letterSpacing: "0.02em",
+                color: GOLD,
+              }}
+            >
+              {WORDS[wordIndex]}
+            </motion.span>
+          </AnimatePresence>
+        </motion.div>
+
+        {/* Gold rule + CTA — share a lower parallax layer */}
+        <motion.div
+          style={{ y: lowerY }}
+          className="flex flex-col items-center gap-0"
+        >
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.9, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            style={{
+              width: 36,
+              height: 1,
+              background: `${GOLD}65`,
+              transformOrigin: "center",
+              marginBottom: "2rem",
+            }}
+          />
+
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.0 }}
+          >
+            <a
+              href="/cotizar"
+              className="inline-flex items-center rounded-full text-[11px] font-semibold tracking-[0.2em] uppercase transition-all duration-300"
+              style={{
+                padding: "1rem 2.8rem",
+                border: `1.5px solid ${GOLD}75`,
+                color: GOLD,
+                background: "transparent",
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.background = GOLD
+                e.currentTarget.style.color = TOBACCO
+                e.currentTarget.style.borderColor = GOLD
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.background = "transparent"
+                e.currentTarget.style.color = GOLD
+                e.currentTarget.style.borderColor = `${GOLD}75`
+              }}
+            >
+              Solicitar Cotización
+            </a>
+          </motion.div>
+        </motion.div>
+
       </motion.div>
+
+      {/* ── Scroll cue ── */}
+      <motion.div
+        style={{
+          opacity: fadeOut,
+          position: "absolute",
+          left: "50%",
+          bottom: "2rem",
+          transform: "translateX(-50%)",
+          zIndex: 10,
+        }}
+      >
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.9 }}
+          className="flex flex-col items-center gap-2"
+        >
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+            style={{
+              width: 1,
+              height: 28,
+              background: `linear-gradient(to bottom, ${GOLD}50, transparent)`,
+            }}
+          />
+          <span
+            className="text-[8px] uppercase tracking-[0.3em]"
+            style={{ color: `${CHAMPAGNE}28` }}
+          >
+            Scroll
+          </span>
+        </motion.div>
+      </motion.div>
+
     </section>
   )
 }
