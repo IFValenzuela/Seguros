@@ -49,9 +49,11 @@ export function Hero() {
         <img
           src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2670&auto=format&fit=crop"
           alt="Asesor con familia"
-          className="w-full h-full object-cover object-center"
-          /* Moody but visible — faces emerge through spotlight below */
-          style={{ filter: "contrast(1.02) saturate(0.85) brightness(0.82)" }}
+          className="w-full h-full object-cover"
+          style={{
+            filter: "contrast(1.02) saturate(0.85) brightness(0.82)",
+            objectPosition: "50% 35%"
+          }}
         />
       </motion.div>
 
