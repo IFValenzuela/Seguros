@@ -37,29 +37,39 @@ export function Header() {
         className="fixed top-0 w-full z-50"
       >
         <div
-          className="absolute inset-0 transition-all duration-500"
+          className="absolute inset-0 transition-all duration-300"
           style={{
-            background: isScrolled ? "#FFFFFF" : "transparent",
-            boxShadow: isScrolled ? "0 2px 20px rgba(0,0,0,0.08)" : "none",
+            background: (isScrolled || isMobileMenuOpen) ? "#FFFFFF" : "transparent",
+            boxShadow: (isScrolled || isMobileMenuOpen) ? "0 2px 20px rgba(0,0,0,0.08)" : "none",
           }}
         />
 
         <nav className="relative flex items-center justify-between max-w-7xl mx-auto px-6 md:px-10 py-4">
 
-          {/* Logo */}
+          {/* Mobile burger button - left side */}
+          <button
+            onClick={() => setMobileOpen(!isMobileMenuOpen)}
+            className="lg:hidden p-2 transition-colors duration-300 z-10"
+            style={{ color: (isScrolled || isMobileMenuOpen) ? TOBACCO : CHAMPAGNE }}
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+
+          {/* Logo - centered on mobile, left on desktop */}
           <Link
             href="/"
-            className="relative flex items-center"
+            className="relative flex items-center lg:order-first absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0"
           >
             <img
-              src={isScrolled ? "/VABL.png" : "/VA WL.png"}
+              src={(isScrolled || isMobileMenuOpen) ? "/VABL.png" : "/VA WL.png"}
               alt="VA Advisors"
               className="w-auto object-contain transition-opacity duration-500 h-[80px] md:h-[120px] lg:h-[150px]"
               style={{
                 position: "absolute",
-                left: 0,
+                left: "50%",
                 top: "50%",
-                transform: "translateY(-50%)",
+                transform: "translate(-50%, -50%)",
               }}
             />
             {/* Spacer to maintain layout */}
@@ -133,15 +143,8 @@ export function Header() {
             </a>
           </div>
 
-          {/* Mobile button */}
-          <button
-            onClick={() => setMobileOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 transition-colors duration-300"
-            style={{ color: isScrolled ? TOBACCO : CHAMPAGNE }}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          {/* Mobile spacer for balance */}
+          <div className="lg:hidden w-10" />
         </nav>
       </motion.header>
 
@@ -153,10 +156,9 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed inset-x-0 top-[60px] md:top-[72px] z-40 lg:hidden"
+            className="fixed inset-x-0 top-[72px] md:top-[88px] z-40 lg:hidden"
             style={{
               background: "#FFFFFF",
-              borderBottom: `1px solid rgba(0,0,0,0.08)`,
             }}
           >
             <nav className="flex flex-col p-6 space-y-2">
