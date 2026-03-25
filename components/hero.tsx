@@ -49,15 +49,15 @@ export function Hero() {
           src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2670&auto=format&fit=crop"
           alt="Asesor con familia"
           className="w-full h-full object-cover object-center"
-          /* Heavily underexposed — faces emerge through spotlight below */
-          style={{ filter: "contrast(1.08) saturate(0.78) brightness(0.48)" }}
+          /* Moody but visible — faces emerge through spotlight below */
+          style={{ filter: "contrast(1.02) saturate(0.85) brightness(0.82)" }}
         />
       </motion.div>
 
       {/* ── LAYER 1 — Deep tobacco tint ── */}
       <div
         className="absolute inset-0"
-        style={{ background: "rgba(18,9,2,0.65)", zIndex: 1 }}
+        style={{ background: "rgba(18,9,2,0.28)", zIndex: 1 }}
       />
 
       {/* ── LAYER 2 — Warm face spotlight: lifts just the subjects ── */}
@@ -66,12 +66,12 @@ export function Hero() {
         style={{
           zIndex: 2,
           background: `radial-gradient(
-            ellipse 40% 45% at 57% 43%,
-            rgba(201,168,108,0.12)  0%,
-            rgba(201,168,108,0.04) 20%,
-            transparent            32%,
-            rgba(10,5,1,0.32)     60%,
-            rgba(5,2,0,0.82)     100%
+            ellipse 50% 55% at 57% 43%,
+            rgba(201,168,108,0.22)  0%,
+            rgba(201,168,108,0.10) 25%,
+            transparent            40%,
+            rgba(10,5,1,0.12)     65%,
+            rgba(5,2,0,0.35)     100%
           )`,
         }}
       />
@@ -83,10 +83,10 @@ export function Hero() {
           zIndex: 2,
           background: `linear-gradient(
             to bottom,
-            rgba(14,7,1,0.75)   0%,
-            transparent         22%,
-            transparent         58%,
-            rgba(10,5,0,0.92)  100%
+            rgba(14,7,1,0.35)   0%,
+            transparent         15%,
+            transparent         68%,
+            rgba(10,5,0,0.55)  100%
           )`,
         }}
       />
@@ -106,17 +106,20 @@ export function Hero() {
         >
           <span className="w-6 h-px" style={{ background: `${GOLD}45` }} />
           <span
-            className="text-[9px] uppercase tracking-[0.4em] font-medium"
-            style={{ color: `${GOLD}85` }}
+            className="text-[10px] uppercase tracking-[0.4em] font-semibold"
+            style={{
+              color: CHAMPAGNE,
+              textShadow: "1px 1px 3px rgba(0,0,0,0.8)",
+            }}
           >
-            VA Advisors · Mexicali, B.C.
+            Agentes de Seguros · Mexicali, B.C.
           </span>
           <span className="w-6 h-px" style={{ background: `${GOLD}45` }} />
         </motion.div>
 
         {/* Headline — clip-reveal from below, then parallaxes up */}
         <motion.div style={{ y: headlineY }} className="mb-2">
-          <div className="overflow-hidden px-1">
+          <div className="overflow-hidden px-1 py-2">
             <motion.h1
               initial={{ y: "106%" }}
               animate={{ y: "0%" }}
@@ -131,7 +134,17 @@ export function Hero() {
                 color: CHAMPAGNE,
               }}
             >
-              Lo que más importa es tu
+              {"Lo que más importa es tu".split("").map((char, i) => (
+                <span
+                  key={i}
+                  style={{
+                    textShadow: "1px 2px 4px rgba(0,0,0,0.7), 0 0 20px rgba(0,0,0,0.4)",
+                    display: "inline-block",
+                  }}
+                >
+                  {char === " " ? "\u00A0" : char}
+                </span>
+              ))}
             </motion.h1>
           </div>
         </motion.div>
@@ -158,7 +171,17 @@ export function Hero() {
                 color: GOLD,
               }}
             >
-              {WORDS[wordIndex]}
+              {WORDS[wordIndex].split("").map((char, i) => (
+                <span
+                  key={i}
+                  style={{
+                    textShadow: "2px 3px 6px rgba(0,0,0,0.7), 0 0 25px rgba(0,0,0,0.4)",
+                    display: "inline-block",
+                  }}
+                >
+                  {char}
+                </span>
+              ))}
             </motion.span>
           </AnimatePresence>
         </motion.div>
@@ -188,22 +211,22 @@ export function Hero() {
           >
             <a
               href="/cotizar"
-              className="inline-flex items-center rounded-full text-[11px] font-semibold tracking-[0.2em] uppercase transition-all duration-300"
+              className="group inline-flex items-center gap-3 text-[11px] font-semibold tracking-[0.2em] uppercase transition-all duration-400"
               style={{
-                padding: "1rem 2.8rem",
-                border: `1.5px solid ${GOLD}75`,
-                color: GOLD,
-                background: "transparent",
+                padding: "1rem 2.4rem",
+                color: TOBACCO,
+                border: `2px solid rgba(0,0,0,0.6)`,
+                borderRadius: "9999px",
+                background: CHAMPAGNE,
+                boxShadow: "0 4px 15px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)",
               }}
               onMouseEnter={e => {
                 e.currentTarget.style.background = GOLD
-                e.currentTarget.style.color = TOBACCO
-                e.currentTarget.style.borderColor = GOLD
+                e.currentTarget.style.boxShadow = "0 6px 20px rgba(0,0,0,0.4), 0 3px 6px rgba(0,0,0,0.25)"
               }}
               onMouseLeave={e => {
-                e.currentTarget.style.background = "transparent"
-                e.currentTarget.style.color = GOLD
-                e.currentTarget.style.borderColor = `${GOLD}75`
+                e.currentTarget.style.background = CHAMPAGNE
+                e.currentTarget.style.boxShadow = "0 4px 15px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)"
               }}
             >
               Solicitar Cotización
