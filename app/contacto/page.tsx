@@ -55,14 +55,34 @@ export default function ContactoPage() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    setIsSubmitted(true)
-    setIsSubmitting(false)
+    setError(null)
+
+    try {
+      const response = await fetch("/api/contacto", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const result = await response.json()
+
+      if (!response.ok) {
+        throw new Error(result.error || "Error al enviar el mensaje")
+      }
+
+      setIsSubmitted(true)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error al enviar el mensaje")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -204,8 +224,14 @@ export default function ContactoPage() {
                   href="https://wa.me/526861234567?text=Hola,%20me%20gustaría%20información%20sobre%20seguros"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 px-6 py-3 rounded-full text-white transition-all duration-300"
+                  className="inline-flex items-center gap-3 px-6 py-3 rounded-full text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
                   style={{ background: "#25D366" }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "#20bd5a"
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "#25D366"
+                  }}
                 >
                   <MessageCircle className="w-5 h-5" />
                   <span className="font-medium">Escríbenos por WhatsApp</span>
@@ -304,11 +330,26 @@ export default function ContactoPage() {
                         onBlur={(e) => (e.target.style.borderColor = "#E5E5E5")}
                       />
                     </div>
+                    {error && (
+                      <div className="p-4 rounded-lg text-sm" style={{ background: "#FEE2E2", color: "#DC2626" }}>
+                        {error}
+                      </div>
+                    )}
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-semibold transition-all duration-300 disabled:opacity-50"
+                      className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-semibold transition-all duration-300 disabled:opacity-50 hover:scale-[1.02] hover:shadow-lg"
                       style={{ background: TOBACCO, color: CHAMPAGNE }}
+                      onMouseEnter={(e) => {
+                        if (!isSubmitting) {
+                          e.currentTarget.style.background = GOLD
+                          e.currentTarget.style.color = TOBACCO
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = TOBACCO
+                        e.currentTarget.style.color = CHAMPAGNE
+                      }}
                     >
                       {isSubmitting ? (
                         "Enviando..."

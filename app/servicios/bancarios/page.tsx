@@ -121,16 +121,30 @@ export default function BancariosPage() {
                 <div className="flex flex-wrap gap-4">
                   <Link
                     href="/cotizar"
-                    className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-semibold transition-all duration-300"
+                    className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
                     style={{ background: GOLD, color: TOBACCO }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = "#D4B57A"
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = GOLD
+                    }}
                   >
                     Solicitar información
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                   <a
                     href="tel:+526861234567"
-                    className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium transition-all duration-300 border"
+                    className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium transition-all duration-300 border hover:scale-[1.02]"
                     style={{ borderColor: `${CHAMPAGNE}40`, color: CHAMPAGNE }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = CHAMPAGNE
+                      e.currentTarget.style.background = `${CHAMPAGNE}15`
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = `${CHAMPAGNE}40`
+                      e.currentTarget.style.background = "transparent"
+                    }}
                   >
                     <Phone className="w-4 h-4" />
                     Llamar ahora
@@ -280,8 +294,16 @@ export default function BancariosPage() {
               </p>
               <Link
                 href="/cotizar"
-                className="inline-flex items-center gap-2 px-10 py-4 rounded-full text-sm font-semibold transition-all duration-300"
+                className="inline-flex items-center gap-2 px-10 py-4 rounded-full text-sm font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
                 style={{ background: TOBACCO, color: CHAMPAGNE }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = GOLD
+                  e.currentTarget.style.color = TOBACCO
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = TOBACCO
+                  e.currentTarget.style.color = CHAMPAGNE
+                }}
               >
                 Solicitar asesoría gratuita
                 <ArrowRight className="w-4 h-4" />

@@ -281,8 +281,16 @@ export default function NosotrosPage() {
               </p>
               <Link
                 href="/contacto"
-                className="inline-flex items-center gap-2 px-10 py-4 rounded-full text-sm font-semibold transition-all duration-300"
+                className="inline-flex items-center gap-2 px-10 py-4 rounded-full text-sm font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
                 style={{ background: TOBACCO, color: CHAMPAGNE }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = GOLD
+                  e.currentTarget.style.color = TOBACCO
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = TOBACCO
+                  e.currentTarget.style.color = CHAMPAGNE
+                }}
               >
                 Contactar ahora
                 <ArrowRight className="w-4 h-4" />
