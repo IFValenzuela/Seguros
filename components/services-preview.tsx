@@ -29,7 +29,7 @@ const services = [
   },
   {
     id: "bancarios",
-    title: "Servicios Financieros",
+    title: "Servicios Bancarios",
     description: "Soluciones integrales para hacer crecer tu patrimonio.",
     href: "/servicios/bancarios",
     image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1200&auto=format&fit=crop",
