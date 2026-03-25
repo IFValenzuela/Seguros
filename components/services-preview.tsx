@@ -61,13 +61,6 @@ export function ServicesPreview() {
               Protección que se siente personal
             </h2>
           </div>
-          <Link
-            href="/servicios"
-            className="inline-flex items-center gap-2 text-sm text-stone-500 hover:text-stone-900 transition-colors"
-          >
-            Ver todos los servicios
-            <ArrowRight className="w-3.5 h-3.5" strokeWidth={1.5} />
-          </Link>
         </motion.div>
 
         {/* Featured Service - Large */}
