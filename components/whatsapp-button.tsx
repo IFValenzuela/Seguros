@@ -29,7 +29,7 @@ export function WhatsAppButton() {
   })
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3">
+    <div className="fixed bottom-6 right-6 z-50 hidden md:flex items-center gap-3">
       {/* Tooltip */}
       <AnimatePresence>
         {(showTooltip || isHovered) && (

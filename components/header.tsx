@@ -46,26 +46,20 @@ export function Header() {
 
         <nav className="relative flex items-center justify-between max-w-7xl mx-auto px-6 md:px-10 py-4">
 
-          {/* Mobile burger button - left side */}
-          <button
-            onClick={() => setMobileOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 transition-colors duration-300 z-10"
-            style={{ color: (isScrolled || isMobileMenuOpen) ? TOBACCO : CHAMPAGNE }}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          {/* Mobile spacer for balance */}
+          <div className="lg:hidden w-10" />
 
           {/* Logo - centered on mobile, left on desktop */}
           <Link
             href="/"
-            className="relative flex items-center lg:order-first absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0"
+            className="relative flex items-center absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0"
           >
             <img
               src={(isScrolled || isMobileMenuOpen) ? "/VABL.png" : "/VA WL.png"}
               alt="VA Advisors"
-              className="w-auto object-contain transition-opacity duration-500 h-[80px] md:h-[120px] lg:h-[150px]"
+              className="w-auto object-contain transition-opacity duration-500"
               style={{
+                height: "150px",
                 position: "absolute",
                 left: "50%",
                 top: "50%",
@@ -73,7 +67,7 @@ export function Header() {
               }}
             />
             {/* Spacer to maintain layout */}
-            <div className="w-[120px] md:w-[180px] lg:w-[250px] h-[40px] md:h-[50px]" />
+            <div style={{ width: "250px", height: "50px" }} />
           </Link>
 
           {/* Desktop nav */}
@@ -143,8 +137,15 @@ export function Header() {
             </a>
           </div>
 
-          {/* Mobile spacer for balance */}
-          <div className="lg:hidden w-10" />
+          {/* Mobile burger button - right side */}
+          <button
+            onClick={() => setMobileOpen(!isMobileMenuOpen)}
+            className="lg:hidden p-2 transition-colors duration-300 z-10"
+            style={{ color: (isScrolled || isMobileMenuOpen) ? TOBACCO : CHAMPAGNE }}
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </nav>
       </motion.header>
 
