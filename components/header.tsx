@@ -54,9 +54,8 @@ export function Header() {
             <img
               src={isScrolled ? "/VABL.png" : "/VA WL.png"}
               alt="VA Advisors"
-              className="w-auto object-contain transition-opacity duration-500"
+              className="w-auto object-contain transition-opacity duration-500 h-[80px] md:h-[120px] lg:h-[150px]"
               style={{
-                height: "150px",
                 position: "absolute",
                 left: 0,
                 top: "50%",
@@ -64,7 +63,7 @@ export function Header() {
               }}
             />
             {/* Spacer to maintain layout */}
-            <div style={{ width: "250px", height: "50px" }} />
+            <div className="w-[120px] md:w-[180px] lg:w-[250px] h-[40px] md:h-[50px]" />
           </Link>
 
           {/* Desktop nav */}
@@ -129,7 +128,7 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed inset-x-0 top-[72px] z-40 lg:hidden"
+            className="fixed inset-x-0 top-[60px] md:top-[72px] z-40 lg:hidden"
             style={{
               background: "#FFFFFF",
               borderBottom: `1px solid rgba(0,0,0,0.08)`,

@@ -129,23 +129,14 @@ export function Hero() {
               style={{
                 fontFamily: "var(--font-serif)",
                 fontWeight: 700,
-                fontSize: "clamp(1.75rem, 4.4vw, 4.6rem)",
-                lineHeight: 1.06,
-                letterSpacing: "0.14em",
+                fontSize: "clamp(1.25rem, 3.5vw, 4.6rem)",
+                lineHeight: 1.2,
+                letterSpacing: "0.08em",
                 color: CHAMPAGNE,
+                textShadow: "1px 2px 4px rgba(0,0,0,0.7), 0 0 20px rgba(0,0,0,0.4)",
               }}
             >
-              {"Lo que más importa es tu".split("").map((char, i) => (
-                <span
-                  key={i}
-                  style={{
-                    textShadow: "1px 2px 4px rgba(0,0,0,0.7), 0 0 20px rgba(0,0,0,0.4)",
-                    display: "inline-block",
-                  }}
-                >
-                  {char === " " ? "\u00A0" : char}
-                </span>
-              ))}
+              Lo que más importa es tu
             </motion.h1>
           </div>
         </motion.div>
@@ -162,27 +153,18 @@ export function Hero() {
               animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
               exit={{ opacity: 0, filter: "blur(10px)", y: -8 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="italic text-center block"
+              className="italic text-center block whitespace-nowrap"
               style={{
                 fontFamily: "var(--font-serif)",
                 fontWeight: 400,
-                fontSize: "clamp(3rem, 8.5vw, 8.8rem)",
+                fontSize: "clamp(2.5rem, 7vw, 8.8rem)",
                 lineHeight: 1.0,
                 letterSpacing: "0.02em",
                 color: GOLD,
+                textShadow: "2px 3px 6px rgba(0,0,0,0.7), 0 0 25px rgba(0,0,0,0.4)",
               }}
             >
-              {WORDS[wordIndex].split("").map((char, i) => (
-                <span
-                  key={i}
-                  style={{
-                    textShadow: "2px 3px 6px rgba(0,0,0,0.7), 0 0 25px rgba(0,0,0,0.4)",
-                    display: "inline-block",
-                  }}
-                >
-                  {char}
-                </span>
-              ))}
+              {WORDS[wordIndex]}
             </motion.span>
           </AnimatePresence>
         </motion.div>
