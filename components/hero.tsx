@@ -40,7 +40,7 @@ export function Hero() {
 
       {/* ── LAYER 0 — Full-bleed photo, oversized for parallax travel ── */}
       <motion.div
-        style={{ y: photoY, height: "130%", top: "-15%" }}
+        style={{ y: photoY, height: "130%", top: "-5%" }}
         className="absolute left-0 right-0"
         initial={{ opacity: 0, scale: 1.06 }}
         animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 1.06 }}
