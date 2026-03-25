@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter, Libre_Baskerville } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { WhatsAppButton } from '@/components/whatsapp-button'
 import './globals.css'
 
 /* ─── Libre Baskerville — refined editorial serif ──────────
@@ -39,6 +40,7 @@ export default function RootLayout({
     <html lang="es" className={`${libreBaskerville.variable} ${inter.variable}`}>
       <body className="font-sans antialiased bg-[#FAFAF9] text-stone-800 selection:bg-blue-100 selection:text-blue-900">
         {children}
+        <WhatsAppButton />
         <Analytics />
       </body>
     </html>
