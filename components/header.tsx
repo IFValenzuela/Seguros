@@ -52,13 +52,12 @@ export function Header() {
           {/* Logo - centered on mobile, left on desktop */}
           <Link
             href="/"
-            className="absolute left-1/2 -translate-x-1/2 lg:relative lg:left-0 lg:translate-x-0 flex items-center justify-center"
+            className="absolute left-1/2 -translate-x-1/2 lg:relative lg:left-0 lg:translate-x-0 lg:-my-10 flex items-center justify-center"
           >
             <img
               src={(isScrolled || isMobileMenuOpen) ? "/VABL.png" : "/VA WL.png"}
               alt="VA Advisors"
-              className="w-auto object-contain transition-opacity duration-500"
-              style={{ height: "150px" }}
+              className="w-auto object-contain transition-opacity duration-500 h-[150px] lg:h-[140px]"
             />
           </Link>
 
