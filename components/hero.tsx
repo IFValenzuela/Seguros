@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef, useState, useEffect } from "react"
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
+import { motion, useScroll, useTransform, AnimatePresence, useInView } from "framer-motion"
 
 const TOBACCO   = "#160C04"
 const CHAMPAGNE = "#EBD9B4"
@@ -12,6 +12,7 @@ const WORDS = ["Familia", "Futuro", "Salud", "Hogar", "Legado"]
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
   const [wordIndex, setWordIndex] = useState(0)
+  const isInView = useInView(sectionRef, { once: false, margin: "-100px" })
 
   useEffect(() => {
     const id = setInterval(() => setWordIndex(i => (i + 1) % WORDS.length), 3400)
@@ -42,7 +43,7 @@ export function Hero() {
         style={{ y: photoY, height: "130%", top: "-15%" }}
         className="absolute left-0 right-0"
         initial={{ opacity: 0, scale: 1.06 }}
-        animate={{ opacity: 1, scale: 1 }}
+        animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 1.06 }}
         transition={{ duration: 2.6, ease: [0.22, 1, 0.36, 1] }}
       >
         <img
@@ -100,7 +101,7 @@ export function Hero() {
         {/* Eyebrow */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
           transition={{ duration: 0.8, delay: 0.65 }}
           className="flex items-center gap-4 mb-9"
         >
@@ -122,7 +123,7 @@ export function Hero() {
           <div className="overflow-hidden px-1 py-2">
             <motion.h1
               initial={{ y: "106%" }}
-              animate={{ y: "0%" }}
+              animate={isInView ? { y: "0%" } : { y: "106%" }}
               transition={{ duration: 1.1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               className="text-center uppercase"
               style={{
@@ -193,7 +194,7 @@ export function Hero() {
         >
           <motion.div
             initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
+            animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
             transition={{ duration: 0.9, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
             style={{
               width: 36,
@@ -206,7 +207,7 @@ export function Hero() {
 
           <motion.div
             initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
             transition={{ duration: 0.8, delay: 1.0 }}
           >
             <a

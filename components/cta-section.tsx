@@ -15,7 +15,7 @@ const navLinks = [
 
 export function CTASection() {
   const containerRef = useRef(null)
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" })
+  const isInView = useInView(containerRef, { once: false, margin: "-100px" })
 
   return (
     <>
@@ -96,7 +96,7 @@ export function CTASection() {
                 href="/cotizar"
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-semibold transition-all duration-300"
                 style={{
-                  background: "#EBD9B4",
+                  background: "#d8d7d5",
                   color: "#160C04",
                   border: "2px solid rgba(0,0,0,0.4)",
                   boxShadow: "0 4px 15px rgba(0,0,0,0.2)",
@@ -106,7 +106,7 @@ export function CTASection() {
                   e.currentTarget.style.boxShadow = "0 6px 20px rgba(0,0,0,0.3)"
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "#EBD9B4"
+                  e.currentTarget.style.background = "#d8d7d5"
                   e.currentTarget.style.boxShadow = "0 4px 15px rgba(0,0,0,0.2)"
                 }}
               >

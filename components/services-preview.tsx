@@ -38,7 +38,7 @@ const services = [
 
 export function ServicesPreview() {
   const containerRef = useRef(null)
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" })
+  const isInView = useInView(containerRef, { once: false, margin: "-100px" })
 
   return (
     <section className="py-28 bg-stone-50" ref={containerRef}>

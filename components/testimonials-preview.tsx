@@ -25,7 +25,7 @@ const testimonios = [
 
 export function TestimonialsPreview() {
   const containerRef = useRef(null)
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" })
+  const isInView = useInView(containerRef, { once: false, margin: "-100px" })
 
   return (
     <section className="py-24 bg-stone-100" ref={containerRef}>
