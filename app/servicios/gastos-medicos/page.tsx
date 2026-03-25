@@ -63,12 +63,12 @@ export default function GastosMedicosPage() {
               src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?q=80&w=2000&auto=format&fit=crop"
               alt=""
               fill
-              className="object-cover opacity-25"
+              className="object-cover opacity-30"
             />
             <div
               className="absolute inset-0"
               style={{
-                background: `linear-gradient(to bottom, #121212 0%, transparent 30%, transparent 60%, #121212 100%), linear-gradient(to right, #121212 0%, transparent 60%)`,
+                background: `linear-gradient(to bottom, #121212 0%, transparent 0%, transparent 100%, #121212 100%)`,
               }}
             />
             <div

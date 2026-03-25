@@ -68,7 +68,7 @@ export default function AutoPage() {
             <div
               className="absolute inset-0"
               style={{
-                background: `linear-gradient(to bottom, #121212 0%, transparent 30%, transparent 60%, #121212 100%), linear-gradient(to right, #121212 0%, transparent 60%)`,
+                background: `linear-gradient(to bottom, #121212 0%, transparent 0%, transparent 100%, #121212 100%)`,
               }}
             />
             <div
