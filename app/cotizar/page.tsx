@@ -2,13 +2,22 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import Image from "next/image"
+import Link from "next/link"
 import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
 import { Heart, Car, Home, Briefcase, Shield, CheckCircle, Send, ArrowRight } from "lucide-react"
 
 const TOBACCO = "#160C04"
 const CHAMPAGNE = "#EBD9B4"
 const GOLD = "#C9A86C"
+
+const navLinks = [
+  { label: "Vida", href: "/servicios/vida" },
+  { label: "Gastos Médicos", href: "/servicios/gastos-medicos" },
+  { label: "Auto", href: "/servicios/auto" },
+  { label: "Nosotros", href: "/nosotros" },
+  { label: "Contacto", href: "/contacto" },
+]
 
 const insuranceTypes = [
   { id: "vida", label: "Seguro de Vida", icon: Heart, description: "Protege a tu familia" },
@@ -78,13 +87,29 @@ export default function CotizarPage() {
           className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden"
           style={{ background: "#121212" }}
         >
-          {/* Subtle gradient overlay */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background: `radial-gradient(ellipse 80% 50% at 50% 0%, ${GOLD}15, transparent 70%)`,
-            }}
-          />
+          {/* Full background image */}
+          <div className="absolute inset-0">
+            <Image
+              src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2000&auto=format&fit=crop"
+              alt=""
+              fill
+              className="object-cover opacity-30"
+            />
+            {/* Dark overlay with gradient */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background: `linear-gradient(to bottom, #121212 0%, transparent 30%, transparent 70%, #121212 100%), linear-gradient(to right, #12121280 0%, transparent 50%, #12121280 100%)`,
+              }}
+            />
+            {/* Gold radial gradient overlay */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background: `radial-gradient(ellipse 60% 40% at 50% 30%, ${GOLD}12, transparent 70%)`,
+              }}
+            />
+          </div>
 
           <div className="relative max-w-4xl mx-auto px-6 text-center">
             <motion.div
@@ -106,7 +131,7 @@ export default function CotizarPage() {
               <h1
                 className="text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-6"
                 style={{
-                  color: CHAMPAGNE,
+                  color: "#ebebeb",
                   fontFamily: "var(--font-serif)",
                 }}
               >
@@ -115,7 +140,7 @@ export default function CotizarPage() {
 
               <p
                 className="text-base md:text-lg max-w-2xl mx-auto leading-relaxed"
-                style={{ color: `${CHAMPAGNE}90` }}
+                style={{ color: "#ebebeb" }}
               >
                 Completa el formulario y uno de nuestros asesores se pondrá en contacto
                 contigo en menos de 24 horas con una propuesta personalizada.
@@ -462,7 +487,107 @@ export default function CotizarPage() {
         </section>
       </main>
 
-      <Footer />
+      {/* Footer - Minimal and clean */}
+      <footer className="bg-stone-950 text-white">
+        <div className="max-w-7xl mx-auto px-6 md:px-8">
+          {/* Main footer */}
+          <div className="py-12 grid md:grid-cols-12 gap-10">
+            {/* Brand */}
+            <div className="md:col-span-4">
+              <Link
+                href="/"
+                className="relative inline-block mb-6"
+              >
+                <img
+                  src="/VA WL.png"
+                  alt="VA Advisors"
+                  className="w-auto object-contain"
+                  style={{
+                    height: "190px",
+                    position: "absolute",
+                    left: 0,
+                    top: -50,
+                  }}
+                />
+                {/* Spacer to maintain layout */}
+                <div style={{ width: "300px", height: "80px" }} />
+              </Link>
+              <p className="text-sm leading-relaxed text-stone-400 mb-3">
+                Más de 15 años protegiendo familias en Mexicali, Baja California.
+              </p>
+              <p className="text-xs text-stone-600">
+                Agentes Autorizados
+              </p>
+            </div>
+
+            {/* Links */}
+            <div className="md:col-span-2">
+              <h4 className="text-xs tracking-wider uppercase text-stone-500 mb-4">Servicios</h4>
+              <nav className="flex flex-col gap-2">
+                {navLinks.slice(0, 3).map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="text-sm text-stone-400 hover:text-white transition-colors duration-200"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+
+            {/* More Links */}
+            <div className="md:col-span-2">
+              <h4 className="text-xs tracking-wider uppercase text-stone-500 mb-4">Empresa</h4>
+              <nav className="flex flex-col gap-2">
+                <Link href="/nosotros" className="text-sm text-stone-400 hover:text-white transition-colors">
+                  Nosotros
+                </Link>
+                <Link href="/contacto" className="text-sm text-stone-400 hover:text-white transition-colors">
+                  Contacto
+                </Link>
+              </nav>
+            </div>
+
+            {/* Contact */}
+            <div className="md:col-span-4">
+              <h4 className="text-xs tracking-wider uppercase text-stone-500 mb-4">Contacto</h4>
+              <div className="flex flex-col gap-2">
+                <a
+                  href="tel:+526861234567"
+                  className="text-sm text-stone-400 hover:text-white transition-colors"
+                >
+                  (686) 123-4567
+                </a>
+                <a
+                  href="mailto:hola@asesoresva.com"
+                  className="text-sm text-stone-400 hover:text-white transition-colors"
+                >
+                  hola@asesoresva.com
+                </a>
+                <span className="text-sm text-stone-500">
+                  Mexicali, B.C.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom */}
+          <div className="py-5 border-t border-stone-900 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-xs text-stone-600">
+              © {new Date().getFullYear()} Asesores Valenzuela y Aguilar
+            </p>
+            <div className="flex items-center gap-8">
+              <Link href="/privacidad" className="text-xs text-stone-600 hover:text-stone-400 transition-colors">
+                Privacidad
+              </Link>
+              <Link href="/terminos" className="text-xs text-stone-600 hover:text-stone-400 transition-colors">
+                Términos
+              </Link>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
