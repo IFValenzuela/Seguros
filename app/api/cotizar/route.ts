@@ -1,7 +1,13 @@
 import { NextResponse } from "next/server"
 import { Resend } from "resend"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+// Check if API key exists
+const apiKey = process.env.RESEND_API_KEY
+if (!apiKey) {
+  console.warn("RESEND_API_KEY is not configured")
+}
+
+const resend = apiKey ? new Resend(apiKey) : null
 
 // Map insurance type IDs to readable names
 const insuranceTypeNames: Record<string, string> = {
@@ -14,6 +20,15 @@ const insuranceTypeNames: Record<string, string> = {
 
 export async function POST(request: Request) {
   try {
+    // Check if Resend is configured
+    if (!resend) {
+      console.error("Resend API key not configured")
+      return NextResponse.json(
+        { error: "Servicio de correo no configurado" },
+        { status: 503 }
+      )
+    }
+
     const body = await request.json()
     const { nombre, apellido, email, telefono, tipoSeguro, mensaje } = body
 
@@ -221,7 +236,7 @@ Fecha: ${new Date().toLocaleString('es-MX', { timeZone: 'America/Tijuana' })}
     if (error) {
       console.error("Error sending email:", error)
       return NextResponse.json(
-        { error: "Error al enviar el correo" },
+        { error: `Error al enviar el correo: ${error.message}` },
         { status: 500 }
       )
     }
