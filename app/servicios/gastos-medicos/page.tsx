@@ -32,7 +32,7 @@ const benefits = [
   {
     icon: Heart,
     title: "Cobertura Integral",
-    description: "Desde consultas preventivas hasta cirugías mayores, todo está cubierto.",
+    description: "Disfruta de cobertura total para accidentes y enfermedades con acceso a hospitales de alta calidad, brindándote tranquilidad y protección cuando más lo necesitas.",
   },
 ]
 
@@ -330,7 +330,7 @@ export default function GastosMedicosPage() {
                 <div style={{ width: "300px", height: "80px" }} />
               </Link>
               <p className="text-sm leading-relaxed text-stone-400 mb-3">
-                Más de 15 años protegiendo familias en Mexicali, Baja California.
+                Más de 25 años protegiendo familias en Mexicali, Baja California.
               </p>
               <p className="text-xs text-stone-600">Agentes Autorizados</p>
             </div>

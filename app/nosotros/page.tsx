@@ -42,9 +42,7 @@ const values = [
 ]
 
 const stats = [
-  { value: "15+", label: "Años de experiencia" },
-  { value: "500+", label: "Familias protegidas" },
-  { value: "98%", label: "Satisfacción" },
+  { value: "25+", label: "Años de experiencia" },
   { value: "24/7", label: "Soporte disponible" },
 ]
 
@@ -111,7 +109,7 @@ export default function NosotrosPage() {
                   className="text-lg md:text-xl leading-relaxed"
                   style={{ color: "#ebebeb" }}
                 >
-                  Desde hace más de 15 años, en Asesores Valenzuela y Aguilar nos dedicamos
+                  Desde hace más de 25 años, en Asesores Valenzuela y Aguilar nos dedicamos
                   a proteger lo que más importa: tu familia, tu salud y tu patrimonio.
                 </p>
               </motion.div>
@@ -150,7 +148,7 @@ export default function NosotrosPage() {
                   <p>
                     Con el tiempo, nos hemos convertido en uno de los asesores de seguros
                     más reconocidos de la región, no por el tamaño de nuestra operación,
-                    sino por la calidad de nuestro servicio y el compromiso con cada cliente.
+                    sino por la calidad de nue  stro servicio y el compromiso con cada cliente.
                   </p>
                   <p>
                     Hoy, continuamos con la misma pasión del primer día: ayudar a las
@@ -180,7 +178,7 @@ export default function NosotrosPage() {
         {/* Stats Section */}
         <section className="py-16" style={{ background: "#121212" }}>
           <div className="max-w-6xl mx-auto px-6">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="flex justify-center gap-16 md:gap-24">
               {stats.map((stat, i) => (
                 <motion.div
                   key={stat.label}
@@ -315,7 +313,7 @@ export default function NosotrosPage() {
                 <div style={{ width: "300px", height: "80px" }} />
               </Link>
               <p className="text-sm leading-relaxed text-stone-400 mb-3">
-                Más de 15 años protegiendo familias en Mexicali, Baja California.
+                Más de 25 años protegiendo familias en Mexicali, Baja California.
               </p>
               <p className="text-xs text-stone-600">Agentes Autorizados</p>
             </div>

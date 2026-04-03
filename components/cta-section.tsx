@@ -139,13 +139,11 @@ export function CTASection() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mt-20 pt-20"
+              className="flex justify-center gap-16 md:gap-24 mt-20 pt-20"
               style={{ borderTop: "1px solid rgba(201,168,108,0.3)" }}
             >
               {[
-                { value: "500+", label: "Familias protegidas" },
-                { value: "15", label: "Años de experiencia" },
-                { value: "98%", label: "Satisfacción" },
+                { value: "25", label: "Años de experiencia" },
                 { value: "24/7", label: "Soporte" },
               ].map((stat) => (
                 <div key={stat.label} className="text-center">
@@ -197,7 +195,7 @@ export function CTASection() {
                 <div style={{ width: "300px", height: "80px" }} />
               </Link>
               <p className="text-sm leading-relaxed text-stone-400 mb-3">
-                Más de 15 años protegiendo familias en Mexicali, Baja California.
+                Más de 25 años protegiendo familias en Mexicali, Baja California.
               </p>
               <p className="text-xs text-stone-600">
                 Agentes Autorizados

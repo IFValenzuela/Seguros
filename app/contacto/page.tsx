@@ -401,7 +401,7 @@ export default function ContactoPage() {
                 <div style={{ width: "300px", height: "80px" }} />
               </Link>
               <p className="text-sm leading-relaxed text-stone-400 mb-3">
-                Más de 15 años protegiendo familias en Mexicali, Baja California.
+                Más de 25 años protegiendo familias en Mexicali, Baja California.
               </p>
               <p className="text-xs text-stone-600">Agentes Autorizados</p>
             </div>
