@@ -23,8 +23,8 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Teléfono",
-    value: "(686) 123-4567",
-    href: "tel:+526861234567",
+    value: "(686) 262-2535",
+    href: "tel:+526862622535",
   },
   {
     icon: Mail,
@@ -221,7 +221,7 @@ export default function ContactoPage() {
 
                 {/* WhatsApp CTA */}
                 <a
-                  href="https://wa.me/526861234567?text=Hola,%20me%20gustaría%20información%20sobre%20seguros"
+                  href="https://wa.me/526862622535?text=Hola,%20me%20gustaría%20información%20sobre%20seguros"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 px-6 py-3 rounded-full text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
@@ -425,7 +425,7 @@ export default function ContactoPage() {
             <div className="md:col-span-4">
               <h4 className="text-xs tracking-wider uppercase text-stone-500 mb-4">Contacto</h4>
               <div className="flex flex-col gap-2">
-                <a href="tel:+526861234567" className="text-sm text-stone-400 hover:text-white transition-colors">(686) 123-4567</a>
+                <a href="tel:+526862622535" className="text-sm text-stone-400 hover:text-white transition-colors">(686) 262-2535</a>
                 <a href="mailto:hola@asesoresva.com" className="text-sm text-stone-400 hover:text-white transition-colors">hola@asesoresva.com</a>
                 <span className="text-sm text-stone-500">Mexicali, B.C.</span>
               </div>

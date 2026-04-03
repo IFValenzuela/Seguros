@@ -114,7 +114,7 @@ export function Footer() {
             className="flex flex-wrap items-center justify-center gap-4 mt-10"
           >
             <a
-              href="https://wa.me/526861234567?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20informaci%C3%B3n%20sobre%20sus%20servicios%20de%20seguros."
+              href="https://wa.me/526862622535?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20informaci%C3%B3n%20sobre%20sus%20servicios%20de%20seguros."
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-3 px-8 py-4 rounded-full transition-all duration-300 bg-[#25D366] hover:bg-[#20bd5a] text-white"
@@ -127,12 +127,12 @@ export function Footer() {
               </span>
             </a>
             <a
-              href="tel:+526861234567"
+              href="tel:+526862622535"
               className="group inline-flex items-center gap-3 px-8 py-4 rounded-full border transition-all duration-300 hover:bg-white/5"
               style={{ borderColor: `${CHAMPAGNE}40`, color: CHAMPAGNE }}
             >
               <Phone className="w-4 h-4" strokeWidth={1.5} />
-              <span className="text-sm font-medium">(686) 123-4567</span>
+              <span className="text-sm font-medium">(686) 262-2535</span>
             </a>
           </motion.div>
         </div>
@@ -151,7 +151,7 @@ export function Footer() {
               </Link>
               <div className="space-y-3">
                 <a
-                  href="https://wa.me/526861234567?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20informaci%C3%B3n%20sobre%20sus%20servicios%20de%20seguros."
+                  href="https://wa.me/526862622535?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20informaci%C3%B3n%20sobre%20sus%20servicios%20de%20seguros."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-[#25D366] hover:text-[#20bd5a] text-sm font-medium transition-colors"

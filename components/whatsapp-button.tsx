@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { X } from "lucide-react"
 
 // WhatsApp number - change this to the actual business number
-const WHATSAPP_NUMBER = "526861234567"
+const WHATSAPP_NUMBER = "526862622535"
 const WHATSAPP_MESSAGE = "Hola, me gustaría obtener información sobre sus servicios de seguros."
 
 function WhatsAppIcon({ className }: { className?: string }) {

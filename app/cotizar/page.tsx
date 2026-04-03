@@ -310,7 +310,7 @@ export default function CotizarPage() {
                         name="telefono"
                         value={formData.telefono}
                         onChange={handleChange}
-                        placeholder="(686) 123-4567"
+                        placeholder="(686) 262-2535"
                         required
                         className="w-full px-4 py-3 rounded-lg border-2 transition-all duration-300 focus:outline-none"
                         style={{
@@ -554,10 +554,10 @@ export default function CotizarPage() {
               <h4 className="text-xs tracking-wider uppercase text-stone-500 mb-4">Contacto</h4>
               <div className="flex flex-col gap-2">
                 <a
-                  href="tel:+526861234567"
+                  href="tel:+526862622535"
                   className="text-sm text-stone-400 hover:text-white transition-colors"
                 >
-                  (686) 123-4567
+                  (686) 262-2535
                 </a>
                 <a
                   href="mailto:hola@asesoresva.com"

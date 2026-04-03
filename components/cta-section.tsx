@@ -114,7 +114,7 @@ export function CTASection() {
                 <ArrowRight className="w-4 h-4" strokeWidth={2} />
               </a>
               <a
-                href="tel:+526861234567"
+                href="tel:+526862622535"
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium transition-all duration-300"
                 style={{
                   border: "1.5px solid rgba(235,217,180,0.4)",
@@ -130,7 +130,7 @@ export function CTASection() {
                 }}
               >
                 <Phone className="w-4 h-4" strokeWidth={2} />
-                (686) 123-4567
+                (686) 262-2535
               </a>
             </motion.div>
 
@@ -236,10 +236,10 @@ export function CTASection() {
               <h4 className="text-xs tracking-wider uppercase text-stone-500 mb-4">Contacto</h4>
               <div className="flex flex-col gap-2">
                 <a
-                  href="tel:+526861234567"
+                  href="tel:+526862622535"
                   className="text-sm text-stone-400 hover:text-white transition-colors"
                 >
-                  (686) 123-4567
+                  (686) 262-2535
                 </a>
                 <a
                   href="mailto:hola@asesoresva.com"

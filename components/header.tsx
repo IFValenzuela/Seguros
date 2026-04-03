@@ -87,7 +87,7 @@ export function Header() {
           {/* Contact - Phone & WhatsApp */}
           <div className="hidden lg:flex items-center gap-4">
             <a
-              href="tel:+526861234567"
+              href="tel:+526862622535"
               className="inline-flex items-center gap-2 text-[14px] font-medium transition-all duration-300"
               style={{
                 color: isScrolled ? TOBACCO : CHAMPAGNE,
@@ -101,10 +101,10 @@ export function Header() {
               }}
             >
               <Phone className="w-4 h-4" strokeWidth={2} />
-              (686) 123-4567
+              (686) 262-2535
             </a>
             <a
-              href="https://wa.me/526861234567?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20informaci%C3%B3n%20sobre%20sus%20servicios%20de%20seguros."
+              href="https://wa.me/526862622535?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20informaci%C3%B3n%20sobre%20sus%20servicios%20de%20seguros."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold transition-all duration-300"
@@ -178,7 +178,7 @@ export function Header() {
                 className="pt-4 space-y-3"
               >
                 <a
-                  href="https://wa.me/526861234567?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20informaci%C3%B3n%20sobre%20sus%20servicios%20de%20seguros."
+                  href="https://wa.me/526862622535?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20informaci%C3%B3n%20sobre%20sus%20servicios%20de%20seguros."
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setMobileOpen(false)}

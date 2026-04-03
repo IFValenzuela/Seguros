@@ -135,7 +135,7 @@ export default function GastosMedicosPage() {
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                   <a
-                    href="tel:+526861234567"
+                    href="tel:+526862622535"
                     className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium transition-all duration-300 border hover:scale-[1.02]"
                     style={{ borderColor: `${CHAMPAGNE}40`, color: CHAMPAGNE }}
                     onMouseEnter={(e) => {
@@ -354,7 +354,7 @@ export default function GastosMedicosPage() {
             <div className="md:col-span-4">
               <h4 className="text-xs tracking-wider uppercase text-stone-500 mb-4">Contacto</h4>
               <div className="flex flex-col gap-2">
-                <a href="tel:+526861234567" className="text-sm text-stone-400 hover:text-white transition-colors">(686) 123-4567</a>
+                <a href="tel:+526862622535" className="text-sm text-stone-400 hover:text-white transition-colors">(686) 262-2535</a>
                 <a href="mailto:hola@asesoresva.com" className="text-sm text-stone-400 hover:text-white transition-colors">hola@asesoresva.com</a>
                 <span className="text-sm text-stone-500">Mexicali, B.C.</span>
               </div>
