@@ -162,11 +162,11 @@ export function Footer() {
                   Escríbenos por WhatsApp
                 </a>
                 <a
-                  href="mailto:contacto@asesoresva.com"
+                  href="mailto:contacto@valenzuelayaguilar.com"
                   className="flex items-center gap-2 text-white/50 hover:text-white text-sm transition-colors"
                 >
                   <Mail className="w-3.5 h-3.5" strokeWidth={1.5} />
-                  contacto@asesoresva.com
+                  contacto@valenzuelayaguilar.com
                 </a>
                 <div className="flex items-center gap-2 text-white/50 text-sm">
                   <MapPin className="w-3.5 h-3.5" strokeWidth={1.5} />

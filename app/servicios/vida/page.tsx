@@ -352,7 +352,7 @@ export default function VidaPage() {
               <h4 className="text-xs tracking-wider uppercase text-stone-500 mb-4">Contacto</h4>
               <div className="flex flex-col gap-2">
                 <a href="tel:+526862622535" className="text-sm text-stone-400 hover:text-white transition-colors">(686) 262-2535</a>
-                <a href="mailto:hola@asesoresva.com" className="text-sm text-stone-400 hover:text-white transition-colors">hola@asesoresva.com</a>
+                <a href="mailto:contacto@valenzuelayaguilar.com" className="text-sm text-stone-400 hover:text-white transition-colors">contacto@valenzuelayaguilar.com</a>
                 <span className="text-sm text-stone-500">Mexicali, B.C.</span>
               </div>
             </div>

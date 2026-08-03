@@ -560,10 +560,10 @@ export default function CotizarPage() {
                   (686) 262-2535
                 </a>
                 <a
-                  href="mailto:hola@asesoresva.com"
+                  href="mailto:contacto@valenzuelayaguilar.com"
                   className="text-sm text-stone-400 hover:text-white transition-colors"
                 >
-                  hola@asesoresva.com
+                  contacto@valenzuelayaguilar.com
                 </a>
                 <span className="text-sm text-stone-500">
                   Mexicali, B.C.
