@@ -9,6 +9,8 @@ if (!apiKey) {
 
 const resend = apiKey ? new Resend(apiKey) : null
 
+const recipientEmails = ["contacto@valenzuelayaguilar.com"]
+
 // Map insurance type IDs to readable names
 const insuranceTypeNames: Record<string, string> = {
   vida: "Seguro de Vida",
@@ -55,7 +57,7 @@ export async function POST(request: Request) {
     // Send email to agents
     const { data, error } = await resend.emails.send({
       from: process.env.EMAIL_FROM || "Seguros <onboarding@resend.dev>",
-      to: process.env.AGENT_EMAILS?.split(",") || ["agent@example.com"],
+      to: recipientEmails,
       subject: `Nueva Solicitud de Cotización - ${insuranceTypeName}`,
       html: `
         <!DOCTYPE html>

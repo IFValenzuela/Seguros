@@ -9,6 +9,8 @@ if (!apiKey) {
 
 const resend = apiKey ? new Resend(apiKey) : null
 
+const recipientEmails = ["contacto@valenzuelayaguilar.com"]
+
 export async function POST(request: Request) {
   try {
     // Check if Resend is configured
@@ -43,7 +45,7 @@ export async function POST(request: Request) {
     // Send email to agents
     const { data, error } = await resend.emails.send({
       from: process.env.EMAIL_FROM || "Seguros <onboarding@resend.dev>",
-      to: process.env.AGENT_EMAILS?.split(",") || ["agent@example.com"],
+      to: recipientEmails,
       subject: `Nuevo Mensaje de Contacto - ${nombre}`,
       html: `
         <!DOCTYPE html>
