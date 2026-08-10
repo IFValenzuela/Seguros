@@ -8,7 +8,6 @@ if (!apiKey) {
 }
 
 const resend = apiKey ? new Resend(apiKey) : null
-
 const recipientEmails = ["contacto@valenzuelayaguilar.com"]
 
 // Map insurance type IDs to readable names
@@ -56,8 +55,9 @@ export async function POST(request: Request) {
 
     // Send email to agents
     const { data, error } = await resend.emails.send({
-      from: process.env.EMAIL_FROM || "Seguros <onboarding@resend.dev>",
+      from: process.env.EMAIL_FROM || "Valenzuela y Aguilar <no-reply@valenzuelayaguilar.com>",
       to: recipientEmails,
+      replyTo: email,
       subject: `Nueva Solicitud de Cotización - ${insuranceTypeName}`,
       html: `
         <!DOCTYPE html>
