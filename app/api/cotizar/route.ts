@@ -55,7 +55,7 @@ export async function POST(request: Request) {
 
     // Send email to agents
     const { data, error } = await resend.emails.send({
-      from: process.env.EMAIL_FROM || "Valenzuela y Aguilar <no-reply@valenzuelayaguilar.com>",
+      from: "Valenzuela y Aguilar <contacto@valenzuelayaguilar.com>",
       to: recipientEmails,
       replyTo: email,
       subject: `Nueva Solicitud de Cotización - ${insuranceTypeName}`,
