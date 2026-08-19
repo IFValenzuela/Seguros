@@ -148,7 +148,7 @@ export default function NosotrosPage() {
                   <p>
                     Con el tiempo, nos hemos convertido en uno de los asesores de seguros
                     más reconocidos de la región, no por el tamaño de nuestra operación,
-                    sino por la calidad de nue  stro servicio y el compromiso con cada cliente.
+                    sino por la calidad de nuestro servicio y el compromiso con cada cliente.
                   </p>
                   <p>
                     Hoy, continuamos con la misma pasión del primer día: ayudar a las
