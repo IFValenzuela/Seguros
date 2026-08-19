@@ -115,7 +115,7 @@ export default function BancariosPage() {
                   style={{ color: "#ebebeb" }}
                 >
                   Soluciones financieras integrales para cada etapa de tu vida.
-                  Ahorro, inversión y crédito con el respaldo de las mejores instituciones.
+                  Ahorro, inversión y crédito con el respaldo de la mejor institucion.
                 </p>
 
                 <div className="flex flex-wrap gap-4">
