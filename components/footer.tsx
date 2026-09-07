@@ -134,6 +134,14 @@ export function Footer() {
               <Phone className="w-4 h-4" strokeWidth={1.5} />
               <span className="text-sm font-medium">(686) 262-2535</span>
             </a>
+            <a
+              href="tel:+526865699613"
+              className="group inline-flex items-center gap-3 px-8 py-4 rounded-full border transition-all duration-300 hover:bg-white/5"
+              style={{ borderColor: `${CHAMPAGNE}40`, color: CHAMPAGNE }}
+            >
+              <Phone className="w-4 h-4" strokeWidth={1.5} />
+              <span className="text-sm font-medium">(686) 569-9613</span>
+            </a>
           </motion.div>
         </div>
       </div>

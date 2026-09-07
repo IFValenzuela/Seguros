@@ -560,6 +560,12 @@ export default function CotizarPage() {
                   (686) 262-2535
                 </a>
                 <a
+                  href="tel:+526865699613"
+                  className="text-sm text-stone-400 hover:text-white transition-colors"
+                >
+                  (686) 569-9613
+                </a>
+                <a
                   href="mailto:contacto@valenzuelayaguilar.com"
                   className="text-sm text-stone-400 hover:text-white transition-colors"
                 >

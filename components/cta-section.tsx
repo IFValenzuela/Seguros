@@ -132,6 +132,25 @@ export function CTASection() {
                 <Phone className="w-4 h-4" strokeWidth={2} />
                 (686) 262-2535
               </a>
+              <a
+                href="tel:+526865699613"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium transition-all duration-300"
+                style={{
+                  border: "1.5px solid rgba(235,217,180,0.4)",
+                  color: "#EBD9B4",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "rgba(235,217,180,0.1)"
+                  e.currentTarget.style.borderColor = "#EBD9B4"
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "transparent"
+                  e.currentTarget.style.borderColor = "rgba(235,217,180,0.4)"
+                }}
+              >
+                <Phone className="w-4 h-4" strokeWidth={2} />
+                (686) 569-9613
+              </a>
             </motion.div>
 
             {/* Clean stats grid */}
@@ -240,6 +259,12 @@ export function CTASection() {
                   className="text-sm text-stone-400 hover:text-white transition-colors"
                 >
                   (686) 262-2535
+                </a>
+                <a
+                  href="tel:+526865699613"
+                  className="text-sm text-stone-400 hover:text-white transition-colors"
+                >
+                  (686) 569-9613
                 </a>
                 <a
                   href="mailto:contacto@valenzuelayaguilar.com"

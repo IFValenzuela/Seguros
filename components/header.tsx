@@ -86,23 +86,42 @@ export function Header() {
 
           {/* Contact - Phone & WhatsApp */}
           <div className="hidden lg:flex items-center gap-4">
-            <a
-              href="tel:+526862622535"
-              className="inline-flex items-center gap-2 text-[14px] font-medium transition-all duration-300"
-              style={{
-                color: isScrolled ? TOBACCO : CHAMPAGNE,
-                textShadow: isScrolled ? "none" : "0 1px 2px rgba(0,0,0,0.3)",
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.color = GOLD
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.color = isScrolled ? TOBACCO : CHAMPAGNE
-              }}
-            >
-              <Phone className="w-4 h-4" strokeWidth={2} />
-              (686) 262-2535
-            </a>
+            <div className="flex flex-col items-end gap-0.5">
+              <a
+                href="tel:+526862622535"
+                className="inline-flex items-center gap-2 text-[14px] font-medium transition-all duration-300"
+                style={{
+                  color: isScrolled ? TOBACCO : CHAMPAGNE,
+                  textShadow: isScrolled ? "none" : "0 1px 2px rgba(0,0,0,0.3)",
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.color = GOLD
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.color = isScrolled ? TOBACCO : CHAMPAGNE
+                }}
+              >
+                <Phone className="w-4 h-4" strokeWidth={2} />
+                (686) 262-2535
+              </a>
+              <a
+                href="tel:+526865699613"
+                className="inline-flex items-center gap-2 text-[13px] font-medium transition-all duration-300"
+                style={{
+                  color: isScrolled ? TOBACCO : CHAMPAGNE,
+                  textShadow: isScrolled ? "none" : "0 1px 2px rgba(0,0,0,0.3)",
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.color = GOLD
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.color = isScrolled ? TOBACCO : CHAMPAGNE
+                }}
+              >
+                <Phone className="w-4 h-4" strokeWidth={2} />
+                (686) 569-9613
+              </a>
+            </div>
             <a
               href="https://wa.me/526862622535?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20informaci%C3%B3n%20sobre%20sus%20servicios%20de%20seguros."
               target="_blank"

@@ -147,7 +147,23 @@ export default function BancariosPage() {
                     }}
                   >
                     <Phone className="w-4 h-4" />
-                    Llamar ahora
+                    (686) 262-2535
+                  </a>
+                  <a
+                    href="tel:+526865699613"
+                    className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium transition-all duration-300 border hover:scale-[1.02]"
+                    style={{ borderColor: `${CHAMPAGNE}40`, color: CHAMPAGNE }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = CHAMPAGNE
+                      e.currentTarget.style.background = `${CHAMPAGNE}15`
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = `${CHAMPAGNE}40`
+                      e.currentTarget.style.background = "transparent"
+                    }}
+                  >
+                    <Phone className="w-4 h-4" />
+                    (686) 569-9613
                   </a>
                 </div>
               </motion.div>
@@ -353,6 +369,7 @@ export default function BancariosPage() {
               <h4 className="text-xs tracking-wider uppercase text-stone-500 mb-4">Contacto</h4>
               <div className="flex flex-col gap-2">
                 <a href="tel:+526862622535" className="text-sm text-stone-400 hover:text-white transition-colors">(686) 262-2535</a>
+                <a href="tel:+526865699613" className="text-sm text-stone-400 hover:text-white transition-colors">(686) 569-9613</a>
                 <a href="mailto:contacto@valenzuelayaguilar.com" className="text-sm text-stone-400 hover:text-white transition-colors">contacto@valenzuelayaguilar.com</a>
                 <span className="text-sm text-stone-500">Mexicali, B.C.</span>
               </div>
