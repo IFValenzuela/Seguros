@@ -86,20 +86,14 @@ export function Header() {
 
           {/* Contact - Phone & WhatsApp */}
           <div className="hidden lg:flex items-center gap-4">
-            <div className="inline-flex items-center gap-2 text-[13px] font-medium" style={{ color: isScrolled ? TOBACCO : CHAMPAGNE, textShadow: isScrolled ? "none" : "0 1px 2px rgba(0,0,0,0.3)" }}>
-              <Phone className="w-4 h-4" strokeWidth={2} />
-              <a
-                href="tel:+526862622535"
-                className="transition-all duration-300 hover:opacity-70"
-              >
+            <div className="inline-flex items-center gap-1.5 text-[13px] font-medium" style={{ color: isScrolled ? TOBACCO : CHAMPAGNE, textShadow: isScrolled ? "none" : "0 1px 2px rgba(0,0,0,0.3)" }}>
+              <Phone className="w-4 h-4 flex-shrink-0" strokeWidth={2} />
+              <a href="tel:+526862622535" className="transition-all duration-300 hover:opacity-70 whitespace-nowrap">
                 (686) 262-2535
               </a>
               <span className="opacity-40">/</span>
-              <a
-                href="tel:+526865699613"
-                className="transition-all duration-300 hover:opacity-70"
-              >
-                (686) 569-9613
+              <a href="tel:+526865699613" className="transition-all duration-300 hover:opacity-70 whitespace-nowrap">
+                569-9613
               </a>
             </div>
             <a
