@@ -10,7 +10,7 @@ export function whatsappUrl(message = "Hola, me gustaría obtener información s
 
 export const serviceLinks = [
   { label: "Vida", long: "Seguro de Vida", href: "/servicios/vida" },
-  { label: "Gastos Médicos", long: "Gastos Médicos Mayores", href: "/servicios/gastos-medicos" },
+  { label: "Gastos Médicos", long: "Gastos Médicos", href: "/servicios/gastos-medicos" },
   { label: "Auto", long: "Seguro de Auto", href: "/servicios/auto" },
   { label: "Bancarios", long: "Servicios Bancarios", href: "/servicios/bancarios" },
 ]

@@ -3,15 +3,15 @@ import { Hospital, Stethoscope, Heart } from "lucide-react"
 import { ServicePage } from "@/components/service-page"
 
 export const metadata: Metadata = {
-  title: "Gastos Médicos Mayores",
-  description: "Seguro de gastos médicos mayores con acceso a la mejor atención médica. Asesoría personal en Mexicali, agentes autorizados Grupo Inbursa.",
+  title: "Gastos Médicos",
+  description: "Seguro de gastos médicos con acceso a la mejor atención médica. Asesoría personal en Mexicali, agentes autorizados Grupo Inbursa.",
 }
 
 export default function GastosMedicosPage() {
   return (
     <ServicePage
       content={{
-        name: "Gastos Médicos Mayores",
+        name: "Gastos Médicos",
         title: "Tu salud es tu mayor inversión",
         intro: "Protégete a ti y a tu familia con un seguro de gastos médicos que te brinda acceso a la mejor atención médica cuando más lo necesitas.",
         heroImage: "https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?q=80&w=2000&auto=format&fit=crop",

@@ -14,7 +14,8 @@ const underline =
   "underline decoration-white/40 underline-offset-[6px] transition-[text-decoration-color] hover:decoration-white"
 
 /* Hero quote starter: one click on a product opens the quote form with it chosen.
-   No panel: a benefit line, then the site's outlined light buttons straight on the photo.
+   No panel: the promise, the site's outlined light buttons straight on the photo, the other
+   ways in (WhatsApp and both phones), and the reassurance as a quiet last line.
    Phones get only the two actions, so the photo and title keep the screen. */
 export function QuoteStarter() {
   return (
@@ -48,8 +49,7 @@ function DesktopStarter() {
         ))}
       </ul>
 
-      <p className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-base text-white/80">
-        <span>Gratis y sin compromiso, respuesta en menos de 24&nbsp;h</span>
+      <p className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-base">
         <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 text-white ${underline}`}>
           <WhatsAppIcon className="h-4 w-4" />
           WhatsApp
@@ -60,6 +60,7 @@ function DesktopStarter() {
           </a>
         ))}
       </p>
+      <p className="mt-3 text-sm text-white/70">Gratis y sin compromiso, respuesta en menos de 24&nbsp;h</p>
     </div>
   )
 }

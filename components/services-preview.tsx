@@ -14,7 +14,7 @@ const services = [
     image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=1200&auto=format&fit=crop",
   },
   {
-    title: "Gastos Médicos Mayores",
+    title: "Gastos Médicos",
     description: "Acceso a la mejor atención médica con la tranquilidad de estar protegido.",
     href: "/servicios/gastos-medicos",
     image: "https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?q=80&w=1200&auto=format&fit=crop",
