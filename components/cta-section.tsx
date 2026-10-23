@@ -34,12 +34,13 @@ export function CTASection({
             <Link href={quoteHref} className="btn btn-light mt-8">
               {ctaLabel}
             </Link>
+            {/* Phones wrap WhatsApp onto its own line below the two numbers; wider screens keep one row. */}
             <div className="t-small mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-white">
               <a
                 href={whatsappUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 underline decoration-white/35 underline-offset-[6px] transition-[text-decoration-color] hover:decoration-white"
+                className="order-last inline-flex basis-full items-center justify-center gap-2 underline decoration-white/35 sm:order-none sm:basis-auto underline-offset-[6px] transition-[text-decoration-color] hover:decoration-white"
               >
                 <WhatsAppIcon className="h-4 w-4" />
                 WhatsApp
