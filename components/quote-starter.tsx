@@ -7,8 +7,7 @@ const types = [
   { id: "vida", label: "Vida" },
   { id: "gastos-medicos", label: "Gastos Médicos" },
   { id: "auto", label: "Auto" },
-  { id: "hogar", label: "Hogar" },
-  { id: "empresarial", label: "Empresarial" },
+  { id: "bancarios", label: "Servicios Bancarios" },
 ]
 
 const underline =

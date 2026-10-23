@@ -55,7 +55,7 @@ export default function Page() {
               <li>Seguros de Vida</li>
               <li>Seguros de Gastos Médicos Mayores</li>
               <li>Seguros de Automóvil</li>
-              <li>Seguros Empresariales</li>
+              <li>Servicios Bancarios: ahorro, inversión y crédito</li>
               <li>Asesoría personalizada en materia de seguros</li>
             </ul>
 

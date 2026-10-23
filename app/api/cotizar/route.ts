@@ -15,8 +15,7 @@ const insuranceTypeNames: Record<string, string> = {
   vida: "Seguro de Vida",
   "gastos-medicos": "Gastos Médicos",
   auto: "Seguro de Auto",
-  hogar: "Seguro de Hogar",
-  empresarial: "Empresarial",
+  bancarios: "Servicios Bancarios",
 }
 
 export async function POST(request: Request) {
@@ -184,7 +183,7 @@ export async function POST(request: Request) {
                 </div>
 
                 <div class="field">
-                  <div class="label">Tipo de Seguro</div>
+                  <div class="label">Servicio</div>
                   <div class="value">${insuranceTypeName}</div>
                 </div>
 
@@ -225,7 +224,7 @@ Nueva Solicitud de Cotización - ${insuranceTypeName}
 Cliente: ${fullName}
 Email: ${email}
 Teléfono: ${telefono}
-Tipo de Seguro: ${insuranceTypeName}
+Servicio: ${insuranceTypeName}
 
 ${mensaje ? `Mensaje:\n${mensaje}\n` : ''}
 

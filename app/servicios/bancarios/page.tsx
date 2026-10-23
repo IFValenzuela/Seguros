@@ -15,7 +15,7 @@ export default function BancariosPage() {
         title: "Haz crecer tu patrimonio con confianza",
         intro: "Soluciones financieras integrales para cada etapa de tu vida. Ahorro, inversión y crédito con el respaldo de la mejor institución.",
         heroImage: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=2000&auto=format&fit=crop",
-        quoteHref: "/cotizar",
+        quoteHref: "/cotizar?tipo=bancarios",
         ctaLabel: "Solicitar asesoría",
         benefitsTitle: "Tu dinero trabajando para ti",
         benefits: [

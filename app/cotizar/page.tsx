@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Heart, Car, Home, Briefcase, Shield, Check, Phone } from "lucide-react"
+import { Heart, Car, Landmark, Shield, Check, Phone } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { PageHero } from "@/components/page-hero"
@@ -14,8 +14,7 @@ const insuranceTypes = [
   { id: "vida", label: "Seguro de Vida", icon: Heart, description: "Protege a tu familia" },
   { id: "gastos-medicos", label: "Gastos Médicos", icon: Shield, description: "Cobertura de salud" },
   { id: "auto", label: "Seguro de Auto", icon: Car, description: "Protección vehicular" },
-  { id: "hogar", label: "Seguro de Hogar", icon: Home, description: "Protege tu patrimonio" },
-  { id: "empresarial", label: "Empresarial", icon: Briefcase, description: "Seguros para tu negocio" },
+  { id: "bancarios", label: "Servicios Bancarios", icon: Landmark, description: "Ahorro, inversión y crédito" },
 ]
 
 const assurances = [
@@ -97,7 +96,7 @@ export default function CotizarPage() {
   const isFormValid = formData.nombre && formData.email && formData.telefono && formData.tipoSeguro
 
   const missingFields = [
-    !formData.tipoSeguro && "tipo de seguro",
+    !formData.tipoSeguro && "servicio",
     !formData.nombre && "nombre",
     !formData.email && "correo",
     !formData.telefono && "teléfono",
@@ -133,11 +132,11 @@ export default function CotizarPage() {
                     >
                       {/* Insurance type */}
                       <fieldset>
-                        <legend id="tipo-label" className="field-label">Tipo de seguro *</legend>
+                        <legend id="tipo-label" className="field-label">¿Qué te interesa? *</legend>
                         <div
                           role="radiogroup"
                           aria-labelledby="tipo-label"
-                          className="mt-1 grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-5"
+                          className="mt-1 grid grid-cols-2 gap-2 sm:grid-cols-4"
                         >
                           {insuranceTypes.map((type, i) => {
                             const isSelected = formData.tipoSeguro === type.id
@@ -302,7 +301,7 @@ export default function CotizarPage() {
                               ? "Ten a la mano la marca, modelo y año de tu vehículo."
                               : formData.tipoSeguro === "gastos-medicos" || formData.tipoSeguro === "vida"
                                 ? "Ten a la mano las edades de las personas que quieres asegurar."
-                                : "Ten a la mano los datos básicos de lo que quieres asegurar.",
+                                : "Piensa si buscas ahorro, inversión o crédito y para qué meta.",
                             "Recibes una propuesta personalizada, sin compromiso.",
                           ].map((step, i) => (
                             <li key={i} className="flex gap-4">
