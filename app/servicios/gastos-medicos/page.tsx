@@ -3,7 +3,7 @@ import { Hospital, Stethoscope, Heart } from "lucide-react"
 import { ServicePage } from "@/components/service-page"
 
 export const metadata: Metadata = {
-  title: "Gastos Médicos",
+  title: "Seguro de Gastos Médicos en Mexicali",
   description: "Seguro de gastos médicos con acceso a la mejor atención médica. Asesoría personal en Mexicali, agentes autorizados Grupo Inbursa.",
 }
 

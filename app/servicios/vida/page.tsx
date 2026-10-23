@@ -3,7 +3,7 @@ import { Shield, Users, Clock } from "lucide-react"
 import { ServicePage } from "@/components/service-page"
 
 export const metadata: Metadata = {
-  title: "Seguro de Vida",
+  title: "Seguro de Vida en Mexicali",
   description: "Protege el futuro de quienes más amas. Seguros de vida con asesoría personal en Mexicali, agentes autorizados Grupo Inbursa.",
 }
 

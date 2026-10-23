@@ -3,7 +3,7 @@ import { TrendingUp, PiggyBank, CreditCard } from "lucide-react"
 import { ServicePage } from "@/components/service-page"
 
 export const metadata: Metadata = {
-  title: "Servicios Bancarios",
+  title: "Servicios Bancarios y Financieros en Mexicali",
   description: "Ahorro, inversión y crédito para hacer crecer tu patrimonio. Asesoría financiera personal en Mexicali, agentes autorizados Grupo Inbursa.",
 }
 

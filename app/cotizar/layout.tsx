@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Solicitar cotización",
+  title: "Cotizar Seguro en Mexicali",
   description: "Cotización gratuita y sin compromiso de seguro de vida, gastos médicos, auto o servicios bancarios. Respuesta en menos de 24 horas.",
 }
 

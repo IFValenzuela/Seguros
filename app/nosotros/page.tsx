@@ -8,7 +8,7 @@ import { Reveal } from "@/components/reveal"
 import { SectionHeading } from "@/components/section-heading"
 
 export const metadata: Metadata = {
-  title: "Nosotros",
+  title: "Agentes de Seguros en Mexicali",
   description: "Más de 25 años protegiendo familias en Mexicali. Conoce a Asesores Valenzuela y Aguilar, agentes autorizados Grupo Inbursa.",
 }
 

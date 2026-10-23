@@ -2,6 +2,8 @@
 
 export const PHONE_PRIMARY = { display: "(686) 262-2535", href: "tel:+526862622535" }
 export const PHONE_SECONDARY = { display: "(686) 569-9613", href: "tel:+526865699613" }
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://valenzuelayaguilar.com"
+export const BUSINESS_NAME = "Asesores Valenzuela y Aguilar"
 export const EMAIL = "contacto@valenzuelayaguilar.com"
 
 export function whatsappUrl(message = "Hola, me gustaría obtener información sobre sus servicios de seguros.") {

@@ -3,7 +3,7 @@ import { Shield, Wrench, MapPin } from "lucide-react"
 import { ServicePage } from "@/components/service-page"
 
 export const metadata: Metadata = {
-  title: "Seguro de Auto",
+  title: "Seguro de Auto en Mexicali",
   description: "Seguro de auto con asistencia vial 24/7, cobertura nacional y extensión a Estados Unidos. Asesoría personal en Mexicali.",
 }
 
