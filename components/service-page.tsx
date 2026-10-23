@@ -32,7 +32,7 @@ export function ServicePage({ content }: { content: ServicePageContent }) {
   const ctaLabel = content.ctaLabel ?? "Solicitar cotización"
 
   return (
-    <div className="flex min-h-[100dvh] flex-col overflow-x-clip bg-paper">
+    <div className="flex min-h-[100svh] flex-col overflow-x-clip bg-paper">
       <Header overlay />
 
       <main className="flex-1">

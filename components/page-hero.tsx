@@ -25,7 +25,7 @@ export function PageHero({
     return (
       <section
         className={`curtain isolate flex items-end justify-center overflow-hidden bg-ink ${
-          compact ? "min-h-[28rem] md:min-h-[34rem]" : "min-h-[100dvh]"
+          compact ? "min-h-[28rem] md:min-h-[34rem]" : "min-h-[100svh]"
         }`}
       >
         <Image src={image} alt="" fill priority sizes="100vw" className="photo-tone -z-10 object-cover" />

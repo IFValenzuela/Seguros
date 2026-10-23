@@ -290,11 +290,16 @@
 
   /* Curtain hero, after atomic-events: the hero stays pinned while the rest of the page
      slides up over it. Sticky rather than fixed, so it simply scrolls off once <main> ends.
-     A hero taller than the screen (--curtain-h, set by the home hero) pins by its bottom edge. */
+     A hero taller than the screen (--curtain-h, set by the home hero) pins by its bottom edge.
+     Heights use svh, never dvh: dvh changes on every frame while a phone's address bar
+     collapses, which re-lays out the pinned hero mid-scroll and makes it stutter.
+     will-change keeps the toned photo on its own layer, so the page slides over it
+     without repainting it. */
   .curtain {
     position: sticky;
-    top: min(0px, calc(100dvh - var(--curtain-h, 0px)));
+    top: min(0px, calc(100svh - var(--curtain-h, 0px)));
     z-index: 0;
+    will-change: transform;
   }
   .curtain ~ * {
     position: relative;

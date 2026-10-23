@@ -31,7 +31,7 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="curtain isolate flex min-h-[100dvh] w-full items-end justify-center overflow-hidden bg-ink"
+      className="curtain isolate flex min-h-[100svh] w-full items-end justify-center overflow-hidden bg-ink"
     >
       <motion.div
         initial={{ opacity: 0, scale: 1.06 }}

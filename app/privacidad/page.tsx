@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <div className="flex min-h-[100dvh] flex-col overflow-x-clip bg-paper">
+    <div className="flex min-h-[100svh] flex-col overflow-x-clip bg-paper">
       <Header />
 
       <main className="flex-1">
