@@ -11,9 +11,9 @@ export default function AutoPage() {
   return (
     <ServicePage
       content={{
-        name: "Seguro de Auto",
+        name: "Seguro de Auto en Mexicali",
         title: "Maneja con total tranquilidad",
-        intro: "Protege tu vehículo y a quienes viajan contigo. Un seguro de auto que te respalda en todo momento, desde pequeños percances hasta siniestros mayores.",
+        intro: "Protege tu vehículo y a quienes viajan contigo. Un seguro de auto en Mexicali que te respalda en todo momento, desde pequeños percances hasta siniestros mayores.",
         heroImage: "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=2000&auto=format&fit=crop",
         quoteHref: "/cotizar?tipo=auto",
         benefitsTitle: "Protección vehicular sin límites",
@@ -36,6 +36,12 @@ export default function AutoPage() {
           src: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1000&auto=format&fit=crop",
           alt: "Auto deportivo en carretera",
         },
+        faqs: [
+          { q: "¿Qué cubre un seguro de auto?", a: "Según el plan que elijas, puede incluir daños materiales por colisión, robo total, responsabilidad civil, gastos médicos a ocupantes, asistencia legal y asistencia vial. Te ayudamos a comparar coberturas para que pagues solo lo que necesitas." },
+          { q: "¿Mi seguro de auto sirve en Estados Unidos?", a: "Puedes añadir extensión de cobertura para Estados Unidos, algo muy útil si cruzas con frecuencia desde Mexicali. Pregúntanos por esta opción al cotizar." },
+          { q: "¿Qué hago si tengo un accidente?", a: "Mantén la calma, llama a la línea de asistencia de tu aseguradora y avísanos. Como tus agentes, te acompañamos durante el reporte y el seguimiento del siniestro." },
+          { q: "¿Cómo cotizo mi seguro de auto en Mexicali?", a: "Llena el formulario de cotización, escríbenos por WhatsApp o llámanos. Te respondemos en menos de 24 horas, sin costo ni compromiso." },
+        ],
         closing: {
           title: "¿Listo para proteger tu vehículo?",
           body: "Obtén una cotización en minutos. Nuestros asesores te ayudarán a encontrar la mejor cobertura al mejor precio.",

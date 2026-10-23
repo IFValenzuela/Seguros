@@ -24,6 +24,7 @@ export type ServicePageContent = {
   coverages: string[]
   coverageImage: { src: string; alt: string }
   closing: { title: string; body: string }
+  faqs?: { q: string; a: string }[]
 }
 
 /* Arranged like a Banham service page: full-bleed hero, the offer on mist,
@@ -100,6 +101,37 @@ export function ServicePage({ content }: { content: ServicePageContent }) {
             </Reveal>
           </div>
         </section>
+
+        {content.faqs && content.faqs.length > 0 && (
+          <section className="section bg-mist">
+            <SectionHeading title="Preguntas frecuentes" />
+            <div className="container-site mx-auto max-w-[44rem] divide-y divide-neutral-300 border-y border-neutral-300">
+              {content.faqs.map((faq) => (
+                <details key={faq.q} className="group py-5">
+                  <summary className="t-card flex cursor-pointer list-none items-center justify-between gap-4">
+                    {faq.q}
+                    <span aria-hidden="true" className="text-xl leading-none transition-transform group-open:rotate-45">+</span>
+                  </summary>
+                  <p className="t-small mt-3 text-neutral-600">{faq.a}</p>
+                </details>
+              ))}
+            </div>
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "FAQPage",
+                  mainEntity: content.faqs.map((f) => ({
+                    "@type": "Question",
+                    name: f.q,
+                    acceptedAnswer: { "@type": "Answer", text: f.a },
+                  })),
+                }),
+              }}
+            />
+          </section>
+        )}
 
         <CTASection title={content.closing.title} body={content.closing.body} quoteHref={content.quoteHref} ctaLabel={ctaLabel} />
         <Assurances />

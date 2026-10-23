@@ -11,9 +11,9 @@ export default function VidaPage() {
   return (
     <ServicePage
       content={{
-        name: "Seguro de Vida",
+        name: "Seguro de Vida en Mexicali",
         title: "Protege el futuro de quienes más amas",
-        intro: "Un seguro de vida es el regalo más valioso que puedes dejar a tu familia. Garantiza su tranquilidad financiera sin importar lo que pase.",
+        intro: "Un seguro de vida en Mexicali es el regalo más valioso que puedes dejar a tu familia. Garantiza su tranquilidad financiera sin importar lo que pase.",
         heroImage: "https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=2000&auto=format&fit=crop",
         quoteHref: "/cotizar?tipo=vida",
         benefitsTitle: "¿Por qué elegir un Seguro de Vida?",
@@ -35,6 +35,12 @@ export default function VidaPage() {
           src: "https://images.unsplash.com/photo-1516733968668-dbdce39c4651?q=80&w=1000&auto=format&fit=crop",
           alt: "Familia reunida en casa",
         },
+        faqs: [
+          { q: "¿Para qué sirve un seguro de vida?", a: "Para que tu familia mantenga su estabilidad económica si tú faltas: cubre gastos del hogar, deudas, educación de tus hijos y gastos funerarios, según el plan." },
+          { q: "¿Cuánto debo asegurar?", a: "Depende de tus ingresos, deudas y dependientes económicos. Un asesor puede ayudarte a calcular una suma asegurada adecuada, sin compromiso." },
+          { q: "¿Quién puede ser beneficiario?", a: "Tú decides: cónyuge, hijos, padres u otras personas. Puedes repartir el porcentaje entre varios beneficiarios y cambiarlo cuando lo necesites." },
+          { q: "¿Qué seguros de vida ofrecen en Mexicali?", a: "Somos agentes autorizados de Grupo Inbursa y te asesoramos de forma personal para elegir el plan que mejor se ajusta a tu situación." },
+        ],
         closing: {
           title: "¿Listo para proteger a tu familia?",
           body: "Solicita una cotización gratuita y sin compromiso. Nuestros asesores te ayudarán a encontrar el plan adecuado para ti.",

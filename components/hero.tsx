@@ -76,7 +76,7 @@ export function Hero() {
               Lo que más importa es tu
             </motion.span>
           </span>
-          <span className="sr-only"> familia, tu futuro, tu salud, tu hogar y tu legado</span>
+          <span className="sr-only"> familia, tu futuro, tu salud, tu hogar y tu legado. Seguros de vida, gastos médicos y auto en Mexicali</span>
 
           <span aria-hidden="true" className="mt-1 block h-[clamp(3.6rem,6.8vw,7.4rem)]">
             <AnimatePresence mode="wait" initial={false}>
