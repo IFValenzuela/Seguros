@@ -51,6 +51,14 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
 
   const solid = !overlay || isScrolled
 
+  /* The logo always lands at the top of the landing page. Next skips the scroll when the
+     link points at the page you're already on, so on "/" scroll up by hand. */
+  const goHome = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (pathname !== "/") return
+    e.preventDefault()
+    window.scrollTo({ top: 0 })
+  }
+
   return (
     <>
       <header
@@ -80,7 +88,7 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
             </a>
           </div>
 
-          <Link href="/" aria-label="Valenzuela y Aguilar, inicio">
+          <Link href="/" onClick={goHome} aria-label="Valenzuela y Aguilar, inicio">
             <Image
               src={solid ? "/logo-va-dark.png" : "/logo-va-light.png"}
               alt="Valenzuela | Aguilar, Agentes de Seguros"

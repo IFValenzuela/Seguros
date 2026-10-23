@@ -34,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es-MX" className={newsreader.variable}>
+    <html lang="es-MX" className={newsreader.variable} data-scroll-behavior="smooth">
       <body className="font-serif antialiased">
         <ScrollToTop />
         <MotionProvider>
