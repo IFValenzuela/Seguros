@@ -46,7 +46,8 @@ export function Hero() {
           priority
           sizes="100vw"
           className="photo-tone object-cover"
-          style={{ objectPosition: "43% 40%" }}
+          // 46% lands the high five (47.5% across the photo) on the centre line of portrait phones.
+          style={{ objectPosition: "46% 40%" }}
         />
       </motion.div>
 

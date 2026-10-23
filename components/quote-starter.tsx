@@ -15,10 +15,28 @@ const underline =
   "underline decoration-white/40 underline-offset-[6px] transition-[text-decoration-color] hover:decoration-white"
 
 /* Hero quote starter: one click on a product opens the quote form with it chosen.
-   No panel: a benefit line, then the site's outlined light buttons straight on the photo. */
+   No panel: a benefit line, then the site's outlined light buttons straight on the photo.
+   Phones get only the two actions, so the photo and title keep the screen. */
 export function QuoteStarter() {
   return (
-    <div className="text-white">
+    <>
+      <div className="flex w-full max-w-xs flex-col gap-3 sm:hidden">
+        <Link href="/cotizar" className="btn btn-light w-full">
+          Cotiza gratis
+        </Link>
+        <a href={PHONE_PRIMARY.href} className="btn btn-line-light w-full">
+          Llámanos
+        </a>
+      </div>
+
+      <DesktopStarter />
+    </>
+  )
+}
+
+function DesktopStarter() {
+  return (
+    <div className="hidden text-white sm:block">
       <p className="text-xl md:text-2xl">Cotiza hoy y protege lo que más importa.</p>
 
       <ul className="mt-6 flex flex-wrap items-center justify-center gap-3">
