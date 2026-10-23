@@ -40,7 +40,7 @@ export function PageHero({
           <Reveal delay={0.3}>
             {intro && <p className="t-lead mx-auto mt-5 max-w-[46ch] text-white/85">{intro}</p>}
             {children && (
-              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">{children}</div>
+              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4">{children}</div>
             )}
           </Reveal>
         </div>

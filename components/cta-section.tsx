@@ -3,7 +3,7 @@ import Link from "next/link"
 import { Reveal } from "@/components/reveal"
 import { PhotoReveal } from "@/components/photo-reveal"
 import { WhatsAppIcon } from "@/components/whatsapp-icon"
-import { PHONE_PRIMARY, whatsappUrl } from "@/lib/site"
+import { PHONE_PRIMARY, PHONE_SECONDARY, whatsappUrl } from "@/lib/site"
 
 /* Framed photo + slate panel on mist, in the proportions of Banham's award block (57/43).
    One primary action; WhatsApp and phone sit beneath it as quiet text links. */
@@ -44,12 +44,15 @@ export function CTASection({
                 <WhatsAppIcon className="h-4 w-4" />
                 WhatsApp
               </a>
-              <a
-                href={PHONE_PRIMARY.href}
-                className="tabular-nums underline decoration-white/35 underline-offset-[6px] transition-[text-decoration-color] hover:decoration-white"
-              >
-                {PHONE_PRIMARY.display}
-              </a>
+              {[PHONE_PRIMARY, PHONE_SECONDARY].map((phone) => (
+                <a
+                  key={phone.href}
+                  href={phone.href}
+                  className="tabular-nums underline decoration-white/35 underline-offset-[6px] transition-[text-decoration-color] hover:decoration-white"
+                >
+                  {phone.display}
+                </a>
+              ))}
             </div>
           </div>
         </div>

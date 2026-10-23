@@ -7,7 +7,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { PageHero } from "@/components/page-hero"
 import { WhatsAppIcon } from "@/components/whatsapp-icon"
-import { PHONE_PRIMARY, whatsappUrl } from "@/lib/site"
+import { PHONE_PRIMARY, PHONE_SECONDARY, whatsappUrl } from "@/lib/site"
 import { cn } from "@/lib/utils"
 
 const insuranceTypes = [
@@ -342,13 +342,16 @@ export default function CotizarPage() {
 
                 <div className="mt-8">
                   <p className="text-base text-neutral-600">¿Prefieres hablar con un asesor?</p>
-                  <a
-                    href={PHONE_PRIMARY.href}
-                    className="mt-2 inline-flex items-center gap-2 font-serif text-2xl tabular-nums text-ink transition-colors hover:text-slate"
-                  >
-                    <Phone className="h-4 w-4 text-slate" strokeWidth={1.75} aria-hidden="true" />
-                    {PHONE_PRIMARY.display}
-                  </a>
+                  {[PHONE_PRIMARY, PHONE_SECONDARY].map((phone) => (
+                    <a
+                      key={phone.href}
+                      href={phone.href}
+                      className="mt-2 flex w-fit items-center gap-2 font-serif text-2xl tabular-nums text-ink transition-colors hover:text-slate"
+                    >
+                      <Phone className="h-4 w-4 text-slate" strokeWidth={1.75} aria-hidden="true" />
+                      {phone.display}
+                    </a>
+                  ))}
                 </div>
               </div>
             </aside>

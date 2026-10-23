@@ -98,7 +98,7 @@ export default function Page() {
             </p>
             <ul>
               <li>Email: contacto@valenzuelayaguilar.com</li>
-              <li>Teléfono: (686) 262-2535</li>
+              <li>Teléfonos: (686) 262-2535 y (686) 569-9613</li>
             </ul>
             </article>
           </div>

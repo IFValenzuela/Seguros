@@ -9,7 +9,7 @@ import { Reveal } from "@/components/reveal"
 import { PhotoReveal } from "@/components/photo-reveal"
 import { SectionHeading } from "@/components/section-heading"
 import { PageHero } from "@/components/page-hero"
-import { PHONE_PRIMARY } from "@/lib/site"
+import { PHONE_PRIMARY, PHONE_SECONDARY } from "@/lib/site"
 
 export type ServicePageContent = {
   name: string
@@ -40,10 +40,18 @@ export function ServicePage({ content }: { content: ServicePageContent }) {
           <Link href={content.quoteHref} className="btn btn-light w-full max-w-xs sm:w-auto">
             {ctaLabel}
           </Link>
-          <a href={PHONE_PRIMARY.href} className="btn btn-line-light w-full max-w-xs tabular-nums sm:w-auto">
-            <Phone className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
-            {PHONE_PRIMARY.display}
-          </a>
+          <p className="mt-3 flex w-full flex-wrap items-center justify-center gap-x-6 gap-y-2 text-base text-white">
+            <Phone className="-mr-3 h-4 w-4 text-white/80" strokeWidth={1.5} aria-hidden="true" />
+            {[PHONE_PRIMARY, PHONE_SECONDARY].map((phone) => (
+              <a
+                key={phone.href}
+                href={phone.href}
+                className="tabular-nums underline decoration-white/40 underline-offset-[6px] transition-[text-decoration-color] hover:decoration-white"
+              >
+                {phone.display}
+              </a>
+            ))}
+          </p>
         </PageHero>
 
         {/* The offer: three centred items on mist */}
