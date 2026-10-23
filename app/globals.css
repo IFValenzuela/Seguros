@@ -3,72 +3,49 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Premium Refined color system */
+/* shadcn tokens, kept for components/ui primitives */
 :root {
-  /* Clean white canvas with warmth */
-  --background: 250 250 249; /* stone-50 */
-  --foreground: 68 64 60; /* stone-600 - softer than 800 */
-
-  /* Card surfaces */
+  --background: 255 255 255;
+  --foreground: 46 46 46;
   --card: 255 255 255;
-  --card-foreground: 68 64 60;
-
+  --card-foreground: 46 46 46;
   --popover: 255 255 255;
-  --popover-foreground: 68 64 60;
-
-  /* Refined Navy Blue - premium corporate */
-  --primary: 15 23 42; /* slate-900 - deeper, more premium */
-  --primary-foreground: 250 250 249;
-
-  /* Warm secondary */
-  --secondary: 250 250 249; /* stone-50 */
-  --secondary-foreground: 15 23 42;
-
-  /* Muted tones - refined */
-  --muted: 245 245 244;
-  --muted-foreground: 120 113 108; /* stone-500 */
-
-  /* Accent - refined blue */
-  --accent: 37 99 235; /* blue-600 */
+  --popover-foreground: 46 46 46;
+  --primary: 0 0 0;
+  --primary-foreground: 255 255 255;
+  --secondary: 245 245 245;
+  --secondary-foreground: 0 0 0;
+  --muted: 245 245 245;
+  --muted-foreground: 115 115 115;
+  --accent: 51 62 72;
   --accent-foreground: 255 255 255;
-
-  --destructive: 220 38 38;
+  --destructive: 185 28 28;
   --destructive-foreground: 255 255 255;
-
-  /* Refined borders - subtle */
-  --border: 231 229 228; /* stone-200 */
-  --input: 231 229 228;
-  --ring: 37 99 235; /* blue-600 */
-
-  --radius: 0.75rem;
+  --border: 229 229 229;
+  --input: 212 212 212;
+  --ring: 0 0 0;
+  --radius: 0.25rem;
 }
 
-.dark {
-  --background: 15 23 42;
-  --foreground: 248 250 252;
-  --card: 30 41 59;
-  --card-foreground: 248 250 252;
-  --popover: 30 41 59;
-  --popover-foreground: 248 250 252;
-  --primary: 96 165 250;
-  --primary-foreground: 15 23 42;
-  --secondary: 51 65 85;
-  --secondary-foreground: 248 250 252;
-  --muted: 51 65 85;
-  --muted-foreground: 148 163 184;
-  --accent: 251 191 36;
-  --accent-foreground: 15 23 42;
-  --destructive: 239 68 68;
-  --destructive-foreground: 248 250 252;
-  --border: 51 65 85;
-  --input: 51 65 85;
-  --ring: 96 165 250;
+/* Brand palette, after banham.co.uk: white and black, one slate accent for panels and the
+   footer. Gold survives only as the hallmark in the VA monogram and the hero's italic word.
+   Mist is a soft neutral grey, a step past white and kin to the hairlines, with the faintest
+   cool cast so it sits quietly beside the slate panels and footer. */
+@theme {
+  --color-ink: #000000;
+  --color-ink-soft: #2E2E2E;
+  --color-slate: #333E48;
+  --color-slate-deep: #262E36;
+  --color-paper: #FFFFFF;
+  --color-mist: #F3F4F5;
+  --color-gold: #C9A86C;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @theme inline {
-  --font-serif: var(--font-serif), 'Libre Baskerville', Georgia, Cambria, serif;
-  --font-sans: var(--font-sans), 'Inter', system-ui, -apple-system, sans-serif;
-  --font-body: var(--font-sans), 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-newsreader), 'Times New Roman', serif;
+  --font-sans: var(--font-newsreader), 'Times New Roman', serif;
 
   --color-background: rgb(var(--background));
   --color-foreground: rgb(var(--foreground));
@@ -101,221 +78,260 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
   body {
-    @apply bg-stone-50 text-stone-700;
-    font-feature-settings: "rlig" 1, "calt" 1, "kern" 1;
+    @apply bg-paper text-[17px] leading-[1.6] text-ink-soft;
+    font-optical-sizing: auto;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Premium heading styles - light and elegant */
-  h1, h2, h3 {
-    font-family: var(--font-serif);
-    letter-spacing: -0.02em;
+  /* One serif family for everything, as Banham does with Ivar. Optical sizing
+     gives large headings the sharper display cut automatically. */
+  h1, h2, h3, h4, h5, h6 {
     font-weight: 400;
-    color: rgb(28 25 23); /* stone-900 */
+    letter-spacing: 0;
+    text-wrap: balance;
+    @apply text-ink;
   }
 
-  h4, h5, h6 {
-    font-family: var(--font-sans);
-    letter-spacing: -0.01em;
-    font-weight: 500;
-    color: rgb(41 37 36); /* stone-800 */
+  p {
+    text-wrap: pretty;
   }
 
-  /* Smooth scrolling with reduced motion respect */
-  html {
-    scroll-behavior: smooth;
+  a, button {
+    touch-action: manipulation;
+  }
+
+  /* Tailwind v4 no longer gives buttons the pointer cursor; restore it so every
+     clickable control shows the hand. */
+  button:not(:disabled),
+  [role="button"]:not(:disabled),
+  select:not(:disabled) {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: var(--color-slate);
+    color: #fff;
   }
 
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
     }
-  }
-
-  /* Premium focus states */
-  :focus-visible {
-    outline: 2px solid rgb(37 99 235);
-    outline-offset: 2px;
-  }
-}
-
-/* Premium button styles */
-@layer utilities {
-  .btn-primary {
-    @apply inline-flex items-center justify-center gap-2;
-    @apply px-6 py-3 rounded-full;
-    @apply bg-stone-900 text-white;
-    @apply text-sm font-medium tracking-wide;
-    @apply transition-all duration-300 ease-out;
-    @apply hover:bg-stone-800 hover:shadow-lg hover:shadow-stone-900/10;
-    @apply active:scale-[0.98];
-  }
-
-  .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2;
-    @apply px-6 py-3 rounded-full;
-    @apply bg-white text-stone-900;
-    @apply text-sm font-medium tracking-wide;
-    @apply border border-stone-200;
-    @apply transition-all duration-300 ease-out;
-    @apply hover:bg-stone-50 hover:border-stone-300 hover:shadow-md;
-    @apply active:scale-[0.98];
-  }
-
-  .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2;
-    @apply px-4 py-2 rounded-lg;
-    @apply text-stone-600 bg-transparent;
-    @apply text-sm font-medium;
-    @apply transition-all duration-200;
-    @apply hover:text-stone-900 hover:bg-stone-100;
-  }
-
-  /* Premium text styles */
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  .text-pretty {
-    text-wrap: pretty;
-  }
-
-  /* Section transitions */
-  .section-fade {
-    @apply relative;
-  }
-
-  .section-fade::before {
-    content: '';
-    @apply absolute left-0 right-0 -top-24 h-24;
-    @apply bg-gradient-to-b from-transparent to-stone-50;
-    @apply pointer-events-none;
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
-/* Premium animation keyframes */
-@keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+/* One button system: 48px tall, 4px corners, quiet type. Imagery stays square. */
+@layer components {
+  .btn {
+    @apply inline-flex h-12 items-center justify-center gap-2.5 whitespace-nowrap rounded-[4px] px-8;
+    @apply text-[17px] leading-none tracking-[0.01em];
+    transition-property: background-color, color, border-color, transform;
+    transition-duration: 200ms;
+    transition-timing-function: var(--ease-out-soft);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .btn:active {
+    transform: scale(0.97);
+  }
+
+  /* Primary on dark surfaces and photos */
+  .btn-light {
+    @apply bg-white text-ink hover:bg-neutral-200;
+  }
+  /* Primary on light surfaces */
+  .btn-dark {
+    @apply bg-ink text-white hover:bg-slate;
+  }
+  /* Secondary on dark surfaces */
+  .btn-line-light {
+    @apply border border-white/50 text-white hover:border-white hover:bg-white hover:text-ink;
+  }
+  /* Secondary on light surfaces */
+  .btn-line-dark {
+    @apply border border-neutral-300 text-ink hover:border-ink;
+  }
+
+  /* Underlined text link, the site's tertiary action */
+  .link-under {
+    @apply inline-block text-[17px] underline decoration-1 underline-offset-[6px];
+    text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+    transition: text-decoration-color 200ms ease;
+  }
+  .link-under:hover,
+  .group:hover .link-under {
+    text-decoration-color: currentColor;
+  }
+
+  /* Small uppercase label for column headings and page kickers */
+  .kicker {
+    @apply text-sm uppercase tracking-[0.14em];
   }
 }
 
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes scale-in {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
+/* Form fields: label above, 48px inputs, 4px corners, ink focus. */
+@layer components {
+  .field-label {
+    @apply mb-2 block text-base text-ink;
   }
-  to {
-    opacity: 1;
-    transform: scale(1);
+  .field-input {
+    @apply block h-[52px] w-full rounded-[4px] border border-neutral-300 bg-white px-4 text-[17px] text-ink placeholder:text-neutral-500;
+    transition: border-color 150ms ease;
   }
-}
-
-@keyframes slide-up {
-  from {
-    opacity: 0;
-    transform: translateY(100%);
+  textarea.field-input {
+    @apply h-auto py-3;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .field-input:hover {
+    @apply border-neutral-400;
+  }
+  .field-input:focus {
+    outline: none;
+    border-color: var(--color-ink);
+    box-shadow: inset 0 0 0 1px var(--color-ink);
   }
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
+/* Long-form legal copy. The site has no typography plugin, so style it here. */
+@layer components {
+  .legal {
+    @apply text-lg leading-[1.7] text-ink-soft;
   }
-  50% {
-    transform: translateY(-10px);
+  .legal h2 {
+    @apply mt-14 scroll-mt-28 border-t border-neutral-200 pt-8 text-[1.625rem] leading-[1.25] text-ink first:mt-0;
+  }
+  .legal h3 {
+    @apply mt-8 text-xl text-ink;
+  }
+  .legal p {
+    @apply mt-4;
+  }
+  .legal ul {
+    @apply mt-4 space-y-2 pl-5;
+    list-style: square;
+  }
+  .legal li::marker {
+    color: var(--color-slate);
+  }
+  .legal a {
+    @apply text-ink underline decoration-neutral-400 underline-offset-4 hover:decoration-ink;
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════════
-   PREMIUM EFFECTS
-   ═══════════════════════════════════════════════════════════════════════════════ */
-
-/* Subtle glass card */
-.glass-card {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.04);
+/* Layout and type scale, calibrated against banham.co.uk at 1920px (1360px content,
+   ~60px section padding, 48px statements, 24px section titles, 20px card titles) and
+   corrected for readability: nothing a visitor reads is under 16px (labels 14px uppercase only),
+   supporting copy is 17px, lead copy 18-20px, line height 1.6, measures capped near 65 characters.
+   Roles:
+   - .t-statement  one big line per page: hero titles, the opening statement, the mission band
+   - .t-section    centred section titles and panel titles; deliberately small, the photos lead
+   - .t-card       card and item titles
+   - .t-lead / .t-small  supporting copy */
+:root {
+  --container: 1360px;
+  --gutter: 1.25rem;
 }
+@media (min-width: 640px) { :root { --gutter: 2rem; } }
+@media (min-width: 1024px) { :root { --gutter: 3rem; } }
 
-/* Premium dark glass */
-.glass-card-dark {
-  background: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-}
+@layer components {
+  .container-site {
+    margin-inline: auto;
+    width: 100%;
+    max-width: calc(var(--container) + 2 * var(--gutter));
+    padding-inline: var(--gutter);
+  }
+  .section {
+    @apply py-16 md:py-20;
+  }
+  .section-statement {
+    @apply py-20 md:py-28;
+  }
+  .section-head {
+    @apply mx-auto mb-10 max-w-2xl px-5 text-center md:mb-12;
+  }
 
-/* Subtle grain texture */
-.grain-overlay::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  opacity: 0.02;
-  pointer-events: none;
-  mix-blend-mode: overlay;
-}
+  .t-statement {
+    @apply text-[2.375rem] leading-[1.1] tracking-[0.005em] md:text-[3.25rem];
+  }
+  .t-section {
+    @apply text-[1.75rem] leading-[1.2] md:text-[2.125rem];
+  }
+  .t-card {
+    @apply text-[1.375rem] leading-[1.3] md:text-2xl;
+  }
+  .t-lead {
+    @apply text-lg leading-[1.6] md:text-xl;
+  }
+  .t-small {
+    @apply text-[17px] leading-[1.6];
+  }
 
-/* Premium dark section */
-.section-dark {
-  background: linear-gradient(180deg, #0f0f0f 0%, #171717 100%);
-}
+  /* One photographic tone for every image on the site: muted colour, slightly darker.
+     Calms busy stock photography and keeps white type legible wherever it sits on a photo. */
+  .photo-tone {
+    filter: saturate(0.7) brightness(0.85);
+  }
 
-/* Premium card hover effect */
-.card-hover {
-  @apply transition-all duration-500 ease-out;
-  @apply hover:shadow-xl hover:shadow-stone-900/5;
-  @apply hover:-translate-y-1;
-}
+  /* Curtain hero, after atomic-events: the hero stays pinned while the rest of the page
+     slides up over it. Sticky rather than fixed, so it simply scrolls off once <main> ends.
+     A hero taller than the screen (--curtain-h, set by the home hero) pins by its bottom edge. */
+  .curtain {
+    position: sticky;
+    top: min(0px, calc(100dvh - var(--curtain-h, 0px)));
+    z-index: 0;
+  }
+  .curtain ~ * {
+    position: relative;
+    z-index: 1;
+    background-color: var(--color-paper);
+  }
 
-/* Smooth image reveal */
-.image-reveal {
-  @apply overflow-hidden;
-}
+  /* Photo window: the band moves while its photo holds still. clip-path, unlike overflow,
+     also clips the fixed photo. Desktop pointers only, as fixed layers stutter on touch scrolling. */
+  .photo-window {
+    clip-path: inset(0);
+  }
+  .photo-window-media {
+    position: absolute;
+    inset: 0;
+  }
+  @media (min-width: 1024px) and (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .photo-window-media {
+      position: fixed;
+      height: 100vh;
+    }
+  }
 
-.image-reveal img {
-  @apply transition-transform duration-700 ease-out;
-  @apply hover:scale-105;
-}
+  @media (prefers-reduced-motion: reduce) {
+    .curtain {
+      position: relative;
+    }
+  }
 
-/* Premium link underline animation */
-.link-underline {
-  @apply relative;
-}
-
-.link-underline::after {
-  content: '';
-  @apply absolute left-0 bottom-0 w-0 h-px;
-  @apply bg-current;
-  @apply transition-all duration-300 ease-out;
-}
-
-.link-underline:hover::after {
-  @apply w-full;
-}
-
-/* Divider line */
-.divider {
-  @apply h-px w-full;
-  background: linear-gradient(90deg, transparent, rgba(120, 113, 108, 0.2), transparent);
+  /* Card photo with a slow, slight zoom on hover, where hover exists. Purely decorative. */
+  .photo-zoom {
+    @apply object-cover;
+    transition: transform 900ms var(--ease-out-soft);
+  }
+  @media (hover: hover) {
+    .group:hover .photo-zoom {
+      transform: scale(1.03);
+    }
+  }
 }

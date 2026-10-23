@@ -1,35 +1,31 @@
-import type { Metadata } from 'next'
-import { Inter, Libre_Baskerville } from 'next/font/google'
+import type { Metadata, Viewport } from 'next'
+import { Newsreader } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { WhatsAppButton } from '@/components/whatsapp-button'
 import { ScrollToTop } from '@/components/scroll-to-top'
+import { MotionProvider } from '@/components/motion-provider'
 import './globals.css'
 
-/* ─── Libre Baskerville — refined editorial serif ──────────
-   Elegant, timeless serif with beautiful curves. Premium feel
-   at all sizes without looking heavy or dated.
-   ─────────────────────────────────────────────────────────── */
-const libreBaskerville = Libre_Baskerville({
-  subsets: ['latin'],
-  variable: '--font-serif',
+/* Newsreader: a sharp contemporary serif with optical sizes, the closest open
+   equivalent to Banham's Ivar Headline/Text pairing. One family sets the whole site. */
+const newsreader = Newsreader({
+  subsets: ['latin', 'latin-ext'],
+  variable: '--font-newsreader',
   display: 'swap',
-  weight: ['400', '700'],
+  axes: ['opsz'],
   style: ['normal', 'italic'],
 })
 
-/* ─── Inter — modern geometric sans ────────────────────────
-   Apple-grade typography. Clean, highly legible, with
-   excellent letter-spacing. Never looks cheap or chunky.
-   ─────────────────────────────────────────────────────────── */
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-sans',
-  display: 'swap',
-})
-
 export const metadata: Metadata = {
-  title: 'Asesores Valenzuela y Aguilar | Seguros y Servicios Financieros en Mexicali',
+  title: {
+    default: 'Asesores Valenzuela y Aguilar | Seguros y Servicios Financieros en Mexicali',
+    template: '%s | Valenzuela y Aguilar, Mexicali',
+  },
   description: 'Protege lo importante y potencia tu futuro financiero. Soluciones integrales en seguros de vida, gastos médicos, auto y servicios bancarios. Agentes autorizados Grupo Inbursa.',
+}
+
+export const viewport: Viewport = {
+  themeColor: '#000000',
 }
 
 export default function RootLayout({
@@ -38,11 +34,13 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es" className={`${libreBaskerville.variable} ${inter.variable}`}>
-      <body className="font-sans antialiased bg-[#FAFAF9] text-stone-800 selection:bg-blue-100 selection:text-blue-900">
+    <html lang="es-MX" className={newsreader.variable}>
+      <body className="font-serif antialiased">
         <ScrollToTop />
-        {children}
-        <WhatsAppButton />
+        <MotionProvider>
+          {children}
+          <WhatsAppButton />
+        </MotionProvider>
         <Analytics />
       </body>
     </html>

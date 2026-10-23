@@ -1,217 +1,211 @@
 "use client"
 
 import Link from "next/link"
-import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X, Phone } from "lucide-react"
+import Image from "next/image"
+import { usePathname } from "next/navigation"
+import { useEffect, useRef, useState } from "react"
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion"
+import { Menu, X, Phone, ChevronRight } from "lucide-react"
+import { serviceLinks, PHONE_PRIMARY, PHONE_SECONDARY, whatsappUrl } from "@/lib/site"
+import { WhatsAppIcon } from "@/components/whatsapp-icon"
+import { cn } from "@/lib/utils"
 
-const TOBACCO   = "#160C04"
-const CHAMPAGNE = "#EBD9B4"
-const GOLD      = "#C9A86C"
+const DRAWER_EASE = [0.32, 0.72, 0, 1] as const
 
-const navLinks = [
-  { label: "Vida",           href: "/servicios/vida" },
-  { label: "Gastos Médicos", href: "/servicios/gastos-medicos" },
-  { label: "Auto",           href: "/servicios/auto" },
-  { label: "Bancarios",      href: "/servicios/bancarios" },
-  { label: "Nosotros",       href: "/nosotros" },
-  { label: "Contacto",       href: "/contacto" },
+const agencyLinks = [
+  { label: "Solicitar cotización", href: "/cotizar" },
+  { label: "Contacto", href: "/contacto" },
+]
+const aboutLinks = [
+  { label: "Nosotros", href: "/nosotros" },
+  { label: "Aviso de privacidad", href: "/privacidad" },
 ]
 
-export function Header() {
-  const [isScrolled, setIsScrolled]     = useState(false)
-  const [isMobileMenuOpen, setMobileOpen] = useState(false)
+/* Banham's arrangement: menu and two quick actions left, wordmark centred, contact icons right.
+   Every page lives in the drawer. With `overlay` the bar starts transparent over a dark hero. */
+export function Header({ overlay = false }: { overlay?: boolean }) {
+  const pathname = usePathname()
+  const { scrollY } = useScroll()
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isOpen, setOpen] = useState(false)
+  const triggerRef = useRef<HTMLButtonElement>(null)
+  const closeRef = useRef<HTMLButtonElement>(null)
+
+  useMotionValueEvent(scrollY, "change", (y) => setIsScrolled(y > 48))
+
+  useEffect(() => setOpen(false), [pathname])
 
   useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 60)
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [])
+    if (!isOpen) return
+    const trigger = triggerRef.current
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false)
+    document.addEventListener("keydown", onKey)
+    document.body.style.overflow = "hidden"
+    closeRef.current?.focus()
+    return () => {
+      document.removeEventListener("keydown", onKey)
+      document.body.style.overflow = ""
+      trigger?.focus()
+    }
+  }, [isOpen])
+
+  const solid = !overlay || isScrolled
 
   return (
     <>
-      <motion.header
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed top-0 w-full z-50"
+      <header
+        className={cn(
+          "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,color] duration-200",
+          solid ? "border-b border-neutral-200 bg-paper text-ink" : "border-b border-transparent bg-transparent text-white",
+        )}
       >
-        <div
-          className="absolute inset-0 transition-all duration-300"
-          style={{
-            background: (isScrolled || isMobileMenuOpen) ? "#FFFFFF" : "transparent",
-            boxShadow: (isScrolled || isMobileMenuOpen) ? "0 2px 20px rgba(0,0,0,0.08)" : "none",
-          }}
-        />
-
-        <nav className="relative flex items-center justify-between max-w-7xl mx-auto px-6 md:px-10 py-4">
-
-          {/* Mobile spacer for balance */}
-          <div className="lg:hidden w-10" />
-
-          {/* Logo - centered on mobile, left on desktop */}
-          <Link
-            href="/"
-            className="absolute left-1/2 -translate-x-1/2 lg:relative lg:left-0 lg:translate-x-0 lg:-my-10 flex items-center justify-center"
-          >
-            <img
-              src={(isScrolled || isMobileMenuOpen) ? "/VABL.png" : "/VA WL.png"}
-              alt="VA Advisors"
-              className="w-auto object-contain transition-opacity duration-500 h-[150px] lg:h-[140px]"
-            />
-          </Link>
-
-          {/* Desktop nav */}
-          <div className="hidden lg:flex items-center gap-10">
-            {navLinks.map(link => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-[14px] font-medium transition-colors duration-300"
-                style={{
-                  color: isScrolled ? TOBACCO : CHAMPAGNE,
-                  textShadow: isScrolled ? "none" : "0 1px 2px rgba(0,0,0,0.3)",
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.color = GOLD
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.color = isScrolled ? TOBACCO : CHAMPAGNE
-                }}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-
-          {/* Contact - Phone & WhatsApp */}
-          <div className="hidden lg:flex items-center gap-4">
-            <div className="inline-flex items-center gap-1.5 text-[13px] font-medium" style={{ color: isScrolled ? TOBACCO : CHAMPAGNE, textShadow: isScrolled ? "none" : "0 1px 2px rgba(0,0,0,0.3)" }}>
-              <Phone className="w-4 h-4 flex-shrink-0" strokeWidth={2} />
-              <a href="tel:+526862622535" className="transition-all duration-300 hover:opacity-70 whitespace-nowrap">
-                (686) 262-2535
-              </a>
-              <span className="opacity-40">/</span>
-              <a href="tel:+526865699613" className="transition-all duration-300 hover:opacity-70 whitespace-nowrap">
-                569-9613
-              </a>
-            </div>
-            <a
-              href="https://wa.me/526862622535?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20informaci%C3%B3n%20sobre%20sus%20servicios%20de%20seguros."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold transition-all duration-300"
-              style={{
-                background: "#25D366",
-                color: "#FFFFFF",
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.background = "#20bd5a"
-                e.currentTarget.style.transform = "scale(1.02)"
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.background = "#25D366"
-                e.currentTarget.style.transform = "scale(1)"
-              }}
+        <nav aria-label="Principal" className="grid h-16 w-full grid-cols-[1fr_auto_1fr] items-center px-[var(--gutter)] lg:h-20">
+          <div className="flex items-center gap-8">
+            <button
+              ref={triggerRef}
+              type="button"
+              onClick={() => setOpen(true)}
+              aria-expanded={isOpen}
+              aria-controls="site-menu"
+              aria-label="Abrir menú"
+              className="-ml-2.5 flex h-10 w-10 items-center justify-center transition-opacity hover:opacity-70 lg:h-11 lg:w-11"
             >
-              <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-              </svg>
-              WhatsApp
+              <Menu className="h-7 w-7" strokeWidth={1.25} />
+            </button>
+            <Link href="/cotizar" className="hidden text-[17px] tracking-[0.01em] transition-opacity hover:opacity-70 lg:block">
+              Solicitar cotización
+            </Link>
+            <a href={PHONE_PRIMARY.href} className="hidden text-[17px] tracking-[0.01em] transition-opacity hover:opacity-70 lg:block">
+              Llámanos
             </a>
           </div>
 
-          {/* Mobile burger button - right side */}
-          <button
-            onClick={() => setMobileOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 transition-colors duration-300 z-10"
-            style={{ color: (isScrolled || isMobileMenuOpen) ? TOBACCO : CHAMPAGNE }}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </nav>
-      </motion.header>
+          <Link href="/" aria-label="Valenzuela y Aguilar, inicio">
+            <Image
+              src={solid ? "/logo-va-dark.png" : "/logo-va-light.png"}
+              alt="Valenzuela | Aguilar, Agentes de Seguros"
+              width={800}
+              height={150}
+              priority
+              className="h-8 w-auto lg:h-11"
+            />
+          </Link>
 
-      {/* Mobile menu */}
+          <div className="-mr-2 flex items-center justify-end gap-1 lg:gap-3">
+            <div className="hidden items-center px-2 text-[17px] tracking-[0.01em] tabular-nums xl:flex">
+              <a href={PHONE_PRIMARY.href} className="transition-opacity hover:opacity-70">
+                {PHONE_PRIMARY.display}
+              </a>
+              <span aria-hidden="true" className="mx-3 h-4 w-px bg-current opacity-40" />
+              <a href={PHONE_SECONDARY.href} className="transition-opacity hover:opacity-70">
+                {PHONE_SECONDARY.display}
+              </a>
+            </div>
+            <a
+              href={PHONE_PRIMARY.href}
+              aria-label={`Llamar al ${PHONE_PRIMARY.display}`}
+              className="hidden h-11 w-11 items-center justify-center transition-opacity hover:opacity-70 lg:flex xl:hidden"
+            >
+              <Phone className="h-[22px] w-[22px]" strokeWidth={1.25} aria-hidden="true" />
+            </a>
+            <a
+              href={whatsappUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Escríbenos por WhatsApp"
+              className="flex h-10 w-10 items-center justify-center lg:h-11 lg:w-11 transition-opacity hover:opacity-70"
+            >
+              <WhatsAppIcon className="h-[22px] w-[22px]" />
+            </a>
+          </div>
+        </nav>
+      </header>
+
       <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed inset-x-0 top-[72px] md:top-[88px] z-40 lg:hidden"
-            style={{
-              background: "#FFFFFF",
-            }}
-          >
-            <nav className="flex flex-col p-6 space-y-2">
-              {navLinks.map((link, i) => (
-                <motion.div
-                  key={link.href}
-                  initial={{ opacity: 0, x: -12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.2, delay: i * 0.03 }}
+        {isOpen && (
+          <>
+            <motion.div
+              key="scrim"
+              aria-hidden="true"
+              onClick={() => setOpen(false)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="fixed inset-0 z-[60] bg-black/50"
+            />
+            <motion.div
+              key="drawer"
+              id="site-menu"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Menú"
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ duration: 0.45, ease: DRAWER_EASE }}
+              className="fixed inset-y-0 left-0 z-[70] flex w-full max-w-[400px] flex-col overflow-y-auto overscroll-contain bg-paper text-ink"
+            >
+              <div className="flex h-16 shrink-0 items-center px-4 md:px-6 lg:h-20">
+                <button
+                  ref={closeRef}
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  aria-label="Cerrar menú"
+                  className="-ml-2.5 flex h-10 w-10 items-center justify-center transition-opacity hover:opacity-70 lg:h-11 lg:w-11"
                 >
-                  <Link
-                    href={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="block py-3 text-base font-medium transition-colors duration-200"
-                    style={{ color: TOBACCO }}
-                  >
-                    {link.label}
-                  </Link>
-                </motion.div>
-              ))}
-              <motion.div
-                initial={{ opacity: 0, x: -12 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.2, delay: navLinks.length * 0.03 }}
-                className="pt-4 space-y-3"
-              >
-                <a
-                  href="https://wa.me/526862622535?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20informaci%C3%B3n%20sobre%20sus%20servicios%20de%20seguros."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full px-6 py-3.5 rounded-full text-base font-semibold transition-all duration-300"
-                  style={{ background: "#25D366", color: "#FFFFFF" }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = "#20bd5a"
-                    e.currentTarget.style.transform = "scale(1.02)"
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = "#25D366"
-                    e.currentTarget.style.transform = "scale(1)"
-                  }}
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                  </svg>
-                  Escríbenos por WhatsApp
-                </a>
-                <Link
-                  href="/cotizar"
-                  onClick={() => setMobileOpen(false)}
-                  className="block w-full text-center px-6 py-3.5 rounded-full text-base font-semibold border-2 transition-all duration-300"
-                  style={{ borderColor: GOLD, color: TOBACCO }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = GOLD
-                    e.currentTarget.style.color = "#FFFFFF"
-                    e.currentTarget.style.transform = "scale(1.02)"
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = "transparent"
-                    e.currentTarget.style.color = TOBACCO
-                    e.currentTarget.style.transform = "scale(1)"
-                  }}
-                >
-                  Solicitar Cotización
-                </Link>
-              </motion.div>
-            </nav>
-          </motion.div>
+                  <X className="h-7 w-7" strokeWidth={1.25} />
+                </button>
+              </div>
+
+              <nav aria-label="Menú del sitio" className="flex flex-1 flex-col px-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] md:px-8">
+                <p className="kicker text-neutral-500">Servicios</p>
+                <ul className="mt-3">
+                  {serviceLinks.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        aria-current={pathname === link.href ? "page" : undefined}
+                        className="group flex items-center justify-between py-2.5 text-xl aria-[current=page]:italic"
+                      >
+                        {link.long}
+                        <ChevronRight
+                          className="h-4 w-4 text-neutral-400 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-ink"
+                          strokeWidth={1.25}
+                          aria-hidden="true"
+                        />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+
+                {[agencyLinks, aboutLinks].map((group, i) => (
+                  <ul key={i} className="mt-10 space-y-3 text-[17px]">
+                    {group.map((link) => (
+                      <li key={link.href}>
+                        <Link href={link.href} className="link-under">
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                ))}
+
+                <div className="mt-auto space-y-3 pt-12">
+                  <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" className="btn btn-line-dark w-full">
+                    <WhatsAppIcon className="h-4 w-4" />
+                    Escríbenos por WhatsApp
+                  </a>
+                  <a href={PHONE_PRIMARY.href} className="btn w-full bg-slate tabular-nums text-white hover:bg-slate-deep">
+                    {PHONE_PRIMARY.display}
+                  </a>
+                  <p className="pt-1 text-center text-base tabular-nums text-neutral-600">
+                    o al <a href={PHONE_SECONDARY.href} className="text-ink">{PHONE_SECONDARY.display}</a>
+                  </p>
+                </div>
+              </nav>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>

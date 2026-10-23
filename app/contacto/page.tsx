@@ -1,55 +1,20 @@
 "use client"
 
 import { useState } from "react"
-import { motion } from "framer-motion"
-import Image from "next/image"
-import Link from "next/link"
+import { Check } from "lucide-react"
 import { Header } from "@/components/header"
-import { Phone, Mail, MapPin, Clock, Send, MessageCircle } from "lucide-react"
-
-const TOBACCO = "#160C04"
-const CHAMPAGNE = "#EBD9B4"
-const GOLD = "#C9A86C"
-
-const navLinks = [
-  { label: "Vida", href: "/servicios/vida" },
-  { label: "Gastos Médicos", href: "/servicios/gastos-medicos" },
-  { label: "Auto", href: "/servicios/auto" },
-  { label: "Nosotros", href: "/nosotros" },
-  { label: "Contacto", href: "/contacto" },
-]
+import { Footer } from "@/components/footer"
+import { PageHero } from "@/components/page-hero"
+import { Reveal } from "@/components/reveal"
+import { WhatsAppIcon } from "@/components/whatsapp-icon"
+import { PHONE_PRIMARY, PHONE_SECONDARY, EMAIL, whatsappUrl } from "@/lib/site"
 
 const contactInfo = [
-  {
-    icon: Phone,
-    title: "Teléfono",
-    value: "(686) 262-2535",
-    href: "tel:+526862622535",
-  },
-  {
-    icon: Phone,
-    title: "Teléfono 2",
-    value: "(686) 569-9613",
-    href: "tel:+526865699613",
-  },
-  {
-    icon: Mail,
-    title: "Email",
-    value: "contacto@valenzuelayaguilar.com",
-    href: "mailto:contacto@valenzuelayaguilar.com",
-  },
-  {
-    icon: MapPin,
-    title: "Dirección",
-    value: "Mexicali, Baja California",
-    href: null,
-  },
-  {
-    icon: Clock,
-    title: "Horario",
-    value: "Lun - Vie: 9:00 - 18:00",
-    href: null,
-  },
+  { title: "Teléfono", value: PHONE_PRIMARY.display, href: PHONE_PRIMARY.href },
+  { title: "Teléfono 2", value: PHONE_SECONDARY.display, href: PHONE_SECONDARY.href },
+  { title: "Email", value: EMAIL, href: `mailto:${EMAIL}` },
+  { title: "Dirección", value: "Mexicali, Baja California", href: null },
+  { title: "Horario", value: "Lunes a viernes, 9:00 a 18:00", href: null },
 ]
 
 export default function ContactoPage() {
@@ -96,233 +61,104 @@ export default function ContactoPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col" style={{ background: "#FAFAF8" }}>
-      <Header />
+    <div className="flex min-h-[100dvh] flex-col overflow-x-clip bg-paper">
+      <Header overlay />
 
       <main className="flex-1">
-        {/* Hero Section */}
-        <section
-          className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden"
-          style={{ background: "#121212" }}
-        >
-          <div className="absolute inset-0">
-            <Image
-              src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=2000&auto=format&fit=crop"
-              alt=""
-              fill
-              className="object-cover opacity-25"
-            />
-            <div
-              className="absolute inset-0"
-              style={{
-                background: `linear-gradient(to bottom, #121212 0%, transparent 30%, transparent 60%, #121212 100%), linear-gradient(to right, #121212 0%, transparent 60%)`,
-              }}
-            />
-            <div
-              className="absolute inset-0"
-              style={{
-                background: `radial-gradient(ellipse 60% 40% at 70% 50%, ${GOLD}10, transparent 70%)`,
-              }}
-            />
-          </div>
+        <PageHero
+          eyebrow="Contacto"
+          title="Estamos aquí para ayudarte"
+          intro="¿Tienes preguntas? ¿Necesitas asesoría? Ponte en contacto con nosotros y uno de nuestros asesores te atenderá de inmediato."
+          image="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=1600&auto=format&fit=crop"
+        />
 
-          <div className="relative max-w-6xl mx-auto px-6">
-            <div className="max-w-2xl">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
+        <section className="section">
+          <div className="container-site grid gap-16 md:grid-cols-12 md:gap-10">
+            {/* Direct channels */}
+            <Reveal className="md:col-span-5 lg:col-span-4">
+              <h2 className="t-section">Múltiples formas de contactarnos</h2>
+
+              <dl className="mt-10 divide-y divide-neutral-200 border-y border-neutral-200">
+                {contactInfo.map((item) => (
+                  <div key={item.title} className="flex flex-col gap-1 py-5">
+                    <dt className="text-base text-neutral-600">{item.title}</dt>
+                    <dd className="break-words text-lg text-ink">
+                      {item.href ? (
+                        <a href={item.href} className="tabular-nums transition-colors hover:text-slate">
+                          {item.value}
+                        </a>
+                      ) : (
+                        item.value
+                      )}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+
+              <a
+                href={whatsappUrl("Hola, me gustaría información sobre seguros")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-dark mt-10 w-full sm:w-auto"
               >
-                <div className="flex items-center gap-4 mb-6">
-                  <span className="w-8 h-px" style={{ background: `${GOLD}60` }} />
-                  <span
-                    className="text-xs uppercase tracking-[0.3em] font-semibold"
-                    style={{ color: GOLD }}
-                  >
-                    Contacto
-                  </span>
-                </div>
+                <WhatsAppIcon className="h-4 w-4" />
+                Escríbenos por WhatsApp
+              </a>
+            </Reveal>
 
-                <h1
-                  className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-6"
-                  style={{
-                    color: "#ebebeb",
-                    fontFamily: "var(--font-serif)",
-                  }}
-                >
-                  Estamos aquí para ayudarte
-                </h1>
-
-                <p
-                  className="text-lg md:text-xl leading-relaxed"
-                  style={{ color: "#ebebeb" }}
-                >
-                  ¿Tienes preguntas? ¿Necesitas asesoría? Ponte en contacto con nosotros
-                  y uno de nuestros expertos te atenderá de inmediato.
-                </p>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* Contact Section */}
-        <section className="py-20 md:py-32">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="grid md:grid-cols-2 gap-16">
-              {/* Contact Info */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
-                <span
-                  className="text-xs uppercase tracking-[0.3em] font-semibold"
-                  style={{ color: GOLD }}
-                >
-                  Información de Contacto
-                </span>
-                <h2
-                  className="text-3xl md:text-4xl font-medium tracking-tight mt-4 mb-8"
-                  style={{ color: TOBACCO, fontFamily: "var(--font-serif)" }}
-                >
-                  Múltiples formas de contactarnos
-                </h2>
-
-                <div className="space-y-6 mb-10">
-                  {contactInfo.map((item, i) => (
-                    <motion.div
-                      key={item.title}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: i * 0.1 }}
-                      className="flex items-start gap-4"
-                    >
-                      <div
-                        className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
-                        style={{ background: `${GOLD}15` }}
-                      >
-                        <item.icon className="w-5 h-5" style={{ color: GOLD }} />
-                      </div>
-                      <div>
-                        <p className="text-sm font-medium mb-1" style={{ color: TOBACCO }}>
-                          {item.title}
-                        </p>
-                        {item.href ? (
-                          <a
-                            href={item.href}
-                            className="text-base transition-colors hover:opacity-70"
-                            style={{ color: "#6B7280" }}
-                          >
-                            {item.value}
-                          </a>
-                        ) : (
-                          <p style={{ color: "#6B7280" }}>{item.value}</p>
-                        )}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-
-                {/* WhatsApp CTA */}
-                <a
-                  href="https://wa.me/526862622535?text=Hola,%20me%20gustaría%20información%20sobre%20seguros"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 px-6 py-3 rounded-full text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
-                  style={{ background: "#25D366" }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = "#20bd5a"
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = "#25D366"
-                  }}
-                >
-                  <MessageCircle className="w-5 h-5" />
-                  <span className="font-medium">Escríbenos por WhatsApp</span>
-                </a>
-              </motion.div>
-
-              {/* Contact Form */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
+            {/* Form */}
+            <Reveal delay={0.1} className="md:col-span-7 lg:col-span-7 lg:col-start-6">
+              <div className="border border-neutral-200 bg-white p-6 sm:p-10">
                 {!isSubmitted ? (
                   <form onSubmit={handleSubmit} className="space-y-6">
-                    <div>
-                      <label
-                        htmlFor="nombre"
-                        className="block text-sm font-semibold uppercase tracking-wider mb-2"
-                        style={{ color: TOBACCO }}
-                      >
-                        Nombre *
-                      </label>
-                      <input
-                        type="text"
-                        id="nombre"
-                        name="nombre"
-                        value={formData.nombre}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 rounded-lg border-2 transition-all duration-300 focus:outline-none"
-                        style={{ borderColor: "#E5E5E5", background: "white", color: TOBACCO }}
-                        onFocus={(e) => (e.target.style.borderColor = GOLD)}
-                        onBlur={(e) => (e.target.style.borderColor = "#E5E5E5")}
-                      />
+                    <h2 className="t-card">Envíanos un mensaje</h2>
+
+                    <div className="grid gap-6 sm:grid-cols-2">
+                      <div>
+                        <label htmlFor="nombre" className="field-label">Nombre *</label>
+                        <input
+                          type="text"
+                          id="nombre"
+                          name="nombre"
+                          autoComplete="name"
+                          value={formData.nombre}
+                          onChange={handleChange}
+                          required
+                          className="field-input"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="telefono" className="field-label">Teléfono</label>
+                        <input
+                          type="tel"
+                          id="telefono"
+                          name="telefono"
+                          autoComplete="tel"
+                          inputMode="tel"
+                          value={formData.telefono}
+                          onChange={handleChange}
+                          className="field-input tabular-nums"
+                        />
+                      </div>
                     </div>
+
                     <div>
-                      <label
-                        htmlFor="email"
-                        className="block text-sm font-semibold uppercase tracking-wider mb-2"
-                        style={{ color: TOBACCO }}
-                      >
-                        Email *
-                      </label>
+                      <label htmlFor="email" className="field-label">Email *</label>
                       <input
                         type="email"
                         id="email"
                         name="email"
+                        autoComplete="email"
+                        spellCheck={false}
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 rounded-lg border-2 transition-all duration-300 focus:outline-none"
-                        style={{ borderColor: "#E5E5E5", background: "white", color: TOBACCO }}
-                        onFocus={(e) => (e.target.style.borderColor = GOLD)}
-                        onBlur={(e) => (e.target.style.borderColor = "#E5E5E5")}
+                        className="field-input"
                       />
                     </div>
+
                     <div>
-                      <label
-                        htmlFor="telefono"
-                        className="block text-sm font-semibold uppercase tracking-wider mb-2"
-                        style={{ color: TOBACCO }}
-                      >
-                        Teléfono
-                      </label>
-                      <input
-                        type="tel"
-                        id="telefono"
-                        name="telefono"
-                        value={formData.telefono}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg border-2 transition-all duration-300 focus:outline-none"
-                        style={{ borderColor: "#E5E5E5", background: "white", color: TOBACCO }}
-                        onFocus={(e) => (e.target.style.borderColor = GOLD)}
-                        onBlur={(e) => (e.target.style.borderColor = "#E5E5E5")}
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="mensaje"
-                        className="block text-sm font-semibold uppercase tracking-wider mb-2"
-                        style={{ color: TOBACCO }}
-                      >
-                        Mensaje *
-                      </label>
+                      <label htmlFor="mensaje" className="field-label">Mensaje *</label>
                       <textarea
                         id="mensaje"
                         name="mensaje"
@@ -330,123 +166,40 @@ export default function ContactoPage() {
                         onChange={handleChange}
                         required
                         rows={5}
-                        className="w-full px-4 py-3 rounded-lg border-2 transition-all duration-300 focus:outline-none resize-none"
-                        style={{ borderColor: "#E5E5E5", background: "white", color: TOBACCO }}
-                        onFocus={(e) => (e.target.style.borderColor = GOLD)}
-                        onBlur={(e) => (e.target.style.borderColor = "#E5E5E5")}
+                        className="field-input resize-y"
                       />
                     </div>
-                    {error && (
-                      <div className="p-4 rounded-lg text-sm" style={{ background: "#FEE2E2", color: "#DC2626" }}>
-                        {error}
-                      </div>
-                    )}
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-semibold transition-all duration-300 disabled:opacity-50 hover:scale-[1.02] hover:shadow-lg"
-                      style={{ background: TOBACCO, color: CHAMPAGNE }}
-                      onMouseEnter={(e) => {
-                        if (!isSubmitting) {
-                          e.currentTarget.style.background = GOLD
-                          e.currentTarget.style.color = TOBACCO
-                        }
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.background = TOBACCO
-                        e.currentTarget.style.color = CHAMPAGNE
-                      }}
-                    >
-                      {isSubmitting ? (
-                        "Enviando..."
-                      ) : (
-                        <>
-                          Enviar mensaje
-                          <Send className="w-4 h-4" />
-                        </>
+
+                    <div aria-live="polite">
+                      {error && (
+                        <p role="alert" className="border-l-2 border-red-700 bg-red-50 px-4 py-3 text-base text-red-800">
+                          {error}. Intenta de nuevo o escríbenos por WhatsApp.
+                        </p>
                       )}
+                    </div>
+
+                    <button type="submit" disabled={isSubmitting} className="btn btn-dark w-full disabled:opacity-60">
+                      {isSubmitting ? "Enviando…" : "Enviar mensaje"}
                     </button>
                   </form>
                 ) : (
-                  <div className="text-center py-16">
-                    <div
-                      className="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center"
-                      style={{ background: `${GOLD}15` }}
-                    >
-                      <Send className="w-10 h-10" style={{ color: GOLD }} />
-                    </div>
-                    <h3
-                      className="text-2xl font-medium mb-4"
-                      style={{ color: TOBACCO, fontFamily: "var(--font-serif)" }}
-                    >
-                      ¡Mensaje enviado!
-                    </h3>
-                    <p style={{ color: "#6B7280" }}>
+                  <div role="status" className="py-10">
+                    <span className="flex h-12 w-12 items-center justify-center bg-ink">
+                      <Check className="h-5 w-5 text-white" strokeWidth={2} aria-hidden="true" />
+                    </span>
+                    <h2 className="t-section mt-8">¡Mensaje enviado!</h2>
+                    <p className="mt-3 max-w-md leading-relaxed text-neutral-600">
                       Gracias por contactarnos. Te responderemos lo antes posible.
                     </p>
                   </div>
                 )}
-              </motion.div>
-            </div>
+              </div>
+            </Reveal>
           </div>
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-stone-950 text-white">
-        <div className="max-w-7xl mx-auto px-6 md:px-8">
-          <div className="py-12 grid md:grid-cols-12 gap-10">
-            <div className="md:col-span-4">
-              <Link href="/" className="relative inline-block mb-6">
-                <img
-                  src="/VA WL.png"
-                  alt="VA Advisors"
-                  className="w-auto object-contain"
-                  style={{ height: "190px", position: "absolute", left: 0, top: -50 }}
-                />
-                <div style={{ width: "300px", height: "80px" }} />
-              </Link>
-              <p className="text-sm leading-relaxed text-stone-400 mb-3">
-                Más de 25 años protegiendo familias en Mexicali, Baja California.
-              </p>
-              <p className="text-xs text-stone-600">Agentes Autorizados</p>
-            </div>
-            <div className="md:col-span-2">
-              <h4 className="text-xs tracking-wider uppercase text-stone-500 mb-4">Servicios</h4>
-              <nav className="flex flex-col gap-2">
-                {navLinks.slice(0, 3).map((link) => (
-                  <Link key={link.href} href={link.href} className="text-sm text-stone-400 hover:text-white transition-colors duration-200">
-                    {link.label}
-                  </Link>
-                ))}
-              </nav>
-            </div>
-            <div className="md:col-span-2">
-              <h4 className="text-xs tracking-wider uppercase text-stone-500 mb-4">Empresa</h4>
-              <nav className="flex flex-col gap-2">
-                <Link href="/nosotros" className="text-sm text-stone-400 hover:text-white transition-colors">Nosotros</Link>
-                <Link href="/contacto" className="text-sm text-stone-400 hover:text-white transition-colors">Contacto</Link>
-              </nav>
-            </div>
-            <div className="md:col-span-4">
-              <h4 className="text-xs tracking-wider uppercase text-stone-500 mb-4">Contacto</h4>
-              <div className="flex flex-col gap-2">
-                <a href="tel:+526862622535" className="text-sm text-stone-400 hover:text-white transition-colors">(686) 262-2535</a>
-                <a href="tel:+526865699613" className="text-sm text-stone-400 hover:text-white transition-colors">(686) 569-9613</a>
-                <a href="mailto:contacto@valenzuelayaguilar.com" className="text-sm text-stone-400 hover:text-white transition-colors">contacto@valenzuelayaguilar.com</a>
-                <span className="text-sm text-stone-500">Mexicali, B.C.</span>
-              </div>
-            </div>
-          </div>
-          <div className="py-5 border-t border-stone-900 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-stone-600">© {new Date().getFullYear()} Asesores Valenzuela y Aguilar</p>
-            <div className="flex items-center gap-8">
-              <Link href="/privacidad" className="text-xs text-stone-600 hover:text-stone-400 transition-colors">Privacidad</Link>
-              <Link href="/terminos" className="text-xs text-stone-600 hover:text-stone-400 transition-colors">Términos</Link>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }
