@@ -13,12 +13,12 @@ import { cn } from "@/lib/utils"
 const DRAWER_EASE = [0.32, 0.72, 0, 1] as const
 
 const agencyLinks = [
-  { label: "Solicitar cotización", href: "/cotizar" },
+  { label: "Nosotros", href: "/nosotros" },
   { label: "Contacto", href: "/contacto" },
 ]
-const aboutLinks = [
-  { label: "Nosotros", href: "/nosotros" },
+const legalLinks = [
   { label: "Aviso de privacidad", href: "/privacidad" },
+  { label: "Términos y condiciones", href: "/terminos" },
 ]
 
 /* Banham's arrangement: menu and two quick actions left, wordmark centred, contact icons right.
@@ -166,15 +166,18 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
                 </button>
               </div>
 
+              {/* Four kinds of thing, four treatments: the services as a ruled index, the quote as
+                  the one panel on mist, the agency pages as plain links, and the ways to reach us
+                  at the foot, with the legal pages as fine print under them. */}
               <nav aria-label="Menú del sitio" className="flex flex-1 flex-col px-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] md:px-8">
                 <p className="kicker text-neutral-500">Servicios</p>
-                <ul className="mt-3">
+                <ul className="mt-3 divide-y divide-neutral-200 border-y border-neutral-200">
                   {serviceLinks.map((link) => (
                     <li key={link.href}>
                       <Link
                         href={link.href}
                         aria-current={pathname === link.href ? "page" : undefined}
-                        className="group flex items-center justify-between py-2.5 text-xl aria-[current=page]:italic"
+                        className="group flex items-center justify-between py-3 text-xl aria-[current=page]:italic"
                       >
                         {link.long}
                         <ChevronRight
@@ -187,29 +190,49 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
                   ))}
                 </ul>
 
-                {[agencyLinks, aboutLinks].map((group, i) => (
-                  <ul key={i} className="mt-10 space-y-3 text-[17px]">
-                    {group.map((link) => (
+                <div className="mt-6 rounded-[4px] bg-mist p-5">
+                  <p className="kicker text-neutral-500">Cotización gratuita</p>
+                  <p className="mt-2 text-xl leading-snug text-ink">Cotiza hoy y protege lo que más importa.</p>
+                  <Link href="/cotizar" className="btn btn-dark mt-4 w-full">
+                    Solicitar cotización
+                  </Link>
+                  <p className="mt-3 text-center text-sm text-neutral-600">Sin compromiso, respuesta en menos de 24&nbsp;h</p>
+                </div>
+
+                <p className="kicker mt-6 text-neutral-500">La agencia</p>
+                <ul className="mt-3 flex gap-8">
+                  {agencyLinks.map((link) => (
+                    <li key={link.href}>
+                      <Link href={link.href} aria-current={pathname === link.href ? "page" : undefined} className="link-under aria-[current=page]:italic">
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-auto pt-8">
+                  <p className="kicker text-neutral-500">Habla con nosotros</p>
+                  <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" className="btn btn-line-dark mt-3 w-full">
+                    <WhatsAppIcon className="h-4 w-4" />
+                    Escríbenos por WhatsApp
+                  </a>
+                  <div className="mt-3 grid grid-cols-2 gap-3">
+                    {[PHONE_PRIMARY, PHONE_SECONDARY].map((phone) => (
+                      <a key={phone.href} href={phone.href} className="btn bg-slate px-3 tabular-nums text-white hover:bg-slate-deep">
+                        {phone.display}
+                      </a>
+                    ))}
+                  </div>
+
+                  <ul className="mt-5 flex flex-wrap justify-center gap-x-5 gap-y-1 text-sm text-neutral-500">
+                    {legalLinks.map((link) => (
                       <li key={link.href}>
-                        <Link href={link.href} className="link-under">
+                        <Link href={link.href} className="transition-colors hover:text-ink">
                           {link.label}
                         </Link>
                       </li>
                     ))}
                   </ul>
-                ))}
-
-                <div className="mt-auto space-y-3 pt-12">
-                  <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" className="btn btn-line-dark w-full">
-                    <WhatsAppIcon className="h-4 w-4" />
-                    Escríbenos por WhatsApp
-                  </a>
-                  <a href={PHONE_PRIMARY.href} className="btn w-full bg-slate tabular-nums text-white hover:bg-slate-deep">
-                    {PHONE_PRIMARY.display}
-                  </a>
-                  <p className="pt-1 text-center text-base tabular-nums text-neutral-600">
-                    o al <a href={PHONE_SECONDARY.href} className="text-ink">{PHONE_SECONDARY.display}</a>
-                  </p>
                 </div>
               </nav>
             </motion.div>
