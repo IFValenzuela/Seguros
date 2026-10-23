@@ -2,6 +2,10 @@
 @import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
+/* Short screens (laptops, phones with the browser bars showing): the menu drawer tightens so it never scrolls. */
+@custom-variant short (@media (max-height: 880px));
+@custom-variant shorter (@media (max-height: 700px));
+@custom-variant tiny (@media (max-height: 600px));
 
 /* shadcn tokens, kept for components/ui primitives */
 :root {

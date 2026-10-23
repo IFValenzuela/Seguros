@@ -154,7 +154,7 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
               transition={{ duration: 0.45, ease: DRAWER_EASE }}
               className="fixed inset-y-0 left-0 z-[70] flex w-full max-w-[400px] flex-col overflow-y-auto overscroll-contain bg-paper text-ink"
             >
-              <div className="flex h-16 shrink-0 items-center px-4 md:px-6 lg:h-20">
+              <div className="flex h-16 shrink-0 items-center px-4 md:px-6 lg:h-20 short:h-14 shorter:h-12 tiny:h-11">
                 <button
                   ref={closeRef}
                   type="button"
@@ -169,15 +169,15 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
               {/* Four kinds of thing, four treatments: the services as a ruled index, the quote as
                   the one panel on mist, the agency pages as plain links, and the ways to reach us
                   at the foot, with the legal pages as fine print under them. */}
-              <nav aria-label="Menú del sitio" className="flex flex-1 flex-col px-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] md:px-8">
+              <nav aria-label="Menú del sitio" className="flex flex-1 flex-col px-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] md:px-8 shorter:pb-[max(1rem,env(safe-area-inset-bottom))]">
                 <p className="kicker text-neutral-500">Servicios</p>
-                <ul className="mt-3 divide-y divide-neutral-200 border-y border-neutral-200">
+                <ul className="mt-3 divide-y divide-neutral-200 border-y border-neutral-200 shorter:mt-2">
                   {serviceLinks.map((link) => (
                     <li key={link.href}>
                       <Link
                         href={link.href}
                         aria-current={pathname === link.href ? "page" : undefined}
-                        className="group flex items-center justify-between py-3 text-xl aria-[current=page]:italic"
+                        className="group flex items-center justify-between py-3 text-xl aria-[current=page]:italic short:py-2 shorter:py-1 shorter:text-lg"
                       >
                         {link.long}
                         <ChevronRight
@@ -190,17 +190,17 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
                   ))}
                 </ul>
 
-                <div className="mt-6 rounded-[4px] bg-mist p-5">
+                <div className="mt-6 rounded-[4px] bg-mist p-5 short:mt-4 short:p-4 shorter:p-3 tiny:mt-3">
                   <p className="kicker text-neutral-500">Cotización gratuita</p>
-                  <p className="mt-2 text-xl leading-snug text-ink">Cotiza hoy y protege lo que más importa.</p>
-                  <Link href="/cotizar" className="btn btn-dark mt-4 w-full">
+                  <p className="mt-2 text-xl leading-snug text-ink short:text-lg shorter:hidden">Cotiza hoy y protege lo que más importa.</p>
+                  <Link href="/cotizar" className="btn btn-dark mt-4 w-full short:mt-3 shorter:h-10">
                     Solicitar cotización
                   </Link>
-                  <p className="mt-3 text-center text-sm text-neutral-600">Sin compromiso, respuesta en menos de 24&nbsp;h</p>
+                  <p className="mt-3 text-center text-sm text-neutral-600 short:mt-2 tiny:hidden">Sin compromiso, respuesta en menos de 24&nbsp;h</p>
                 </div>
 
-                <p className="kicker mt-6 text-neutral-500">La agencia</p>
-                <ul className="mt-3 flex gap-8">
+                <p className="kicker mt-6 text-neutral-500 short:mt-4 tiny:mt-3">La agencia</p>
+                <ul className="mt-3 flex gap-8 shorter:mt-2">
                   {agencyLinks.map((link) => (
                     <li key={link.href}>
                       <Link href={link.href} aria-current={pathname === link.href ? "page" : undefined} className="link-under aria-[current=page]:italic">
@@ -210,21 +210,21 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
                   ))}
                 </ul>
 
-                <div className="mt-auto pt-8">
-                  <p className="kicker text-neutral-500">Habla con nosotros</p>
-                  <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" className="btn btn-line-dark mt-3 w-full">
+                <div className="mt-auto pt-8 short:pt-5 shorter:pt-4">
+                  <p className="kicker text-neutral-500 tiny:hidden">Habla con nosotros</p>
+                  <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" className="btn btn-line-dark mt-3 w-full shorter:mt-2 shorter:h-10 tiny:mt-0">
                     <WhatsAppIcon className="h-4 w-4" />
                     Escríbenos por WhatsApp
                   </a>
-                  <div className="mt-3 grid grid-cols-2 gap-3">
+                  <div className="mt-3 grid grid-cols-2 gap-3 shorter:mt-2 shorter:gap-2">
                     {[PHONE_PRIMARY, PHONE_SECONDARY].map((phone) => (
-                      <a key={phone.href} href={phone.href} className="btn bg-slate px-3 tabular-nums text-white hover:bg-slate-deep">
+                      <a key={phone.href} href={phone.href} className="btn bg-slate px-3 tabular-nums text-white hover:bg-slate-deep shorter:h-10">
                         {phone.display}
                       </a>
                     ))}
                   </div>
 
-                  <ul className="mt-5 flex flex-wrap justify-center gap-x-5 gap-y-1 text-sm text-neutral-500">
+                  <ul className="mt-5 flex flex-wrap justify-center short:mt-3 tiny:mt-2 gap-x-5 gap-y-1 text-sm text-neutral-500">
                     {legalLinks.map((link) => (
                       <li key={link.href}>
                         <Link href={link.href} className="transition-colors hover:text-ink">
